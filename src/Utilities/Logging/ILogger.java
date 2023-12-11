@@ -1,4 +1,4 @@
-package Utilities;
+package Utilities.Logging;
 
 public interface ILogger {
     /**
