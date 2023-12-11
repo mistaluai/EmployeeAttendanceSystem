@@ -12,7 +12,7 @@ public class SuperViewAttendanceHistory implements IAttendanceCommand {
 
     @Override
     public void execute() {
-
+        attendanceManager.superViewAttendanceHistory(ID);
     }
 
 }

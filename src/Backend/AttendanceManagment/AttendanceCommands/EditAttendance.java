@@ -16,6 +16,6 @@ public class EditAttendance implements IAttendanceCommand {
 
     @Override
     public void execute() {
-
+        attendanceManager.editAttendance(ID, updatedRecord);
     }
 }

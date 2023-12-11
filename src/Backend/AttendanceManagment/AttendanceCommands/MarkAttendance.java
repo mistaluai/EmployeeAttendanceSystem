@@ -9,6 +9,6 @@ public class MarkAttendance implements  IAttendanceCommand {
     }
 
     public void execute() {
-
+        attendanceManager.markAttendance();
     }
 }

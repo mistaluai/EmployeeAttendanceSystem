@@ -9,6 +9,6 @@ public class ViewAttendanceHistory implements IAttendanceCommand {
     }
 
     public void execute() {
-
+        attendanceManager.viewAttendanceHistory();
     }
 }
