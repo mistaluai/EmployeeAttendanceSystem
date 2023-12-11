@@ -17,6 +17,6 @@ public interface IAttendanceDataHandler {
      * @param ID: Target employee ID
      * @param updatedRecord: the updated record to replace the old record
      */
-    void updateRecord(int ID, AttendanceRecord updatedRecord);
+    void editRecord(int ID, AttendanceRecord updatedRecord);
 
 }
