@@ -1,6 +1,14 @@
 package Backend.AttendanceManagment.AttendanceCommands;
-public class ViewAttendanceHistory {
-    public static void main(String[] args) {
-        
+
+import Backend.AttendanceManagment.IAttendanceManager;
+
+public class ViewAttendanceHistory implements IAttendanceCommand {
+    IAttendanceManager attendanceManager;
+    public ViewAttendanceHistory(IAttendanceManager attendanceManager) {
+        this.attendanceManager = attendanceManager;
+    }
+
+    public void execute() {
+
     }
 }
