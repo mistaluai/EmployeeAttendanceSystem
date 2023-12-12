@@ -10,7 +10,7 @@ public class InState implements IAttendanceState{
     @Override
     public void markAttendance(ArrayList<AttendanceRecord> attendanceRecords) {
 
-        attendanceRecords.get(-1).setTimeOut(new Date());
+        attendanceRecords.get(attendanceRecords.size() - 1).setTimeOut(new Date());
 
     }
 
