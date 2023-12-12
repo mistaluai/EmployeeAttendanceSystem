@@ -51,6 +51,7 @@ public class LoggerImpl implements ILogger{
             fw.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
+            //yabni ya3ni e7na bn wrie el errors fe log file 34an enta t throw exception w howa b write el file????
         }
     }
 }
