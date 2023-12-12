@@ -12,8 +12,8 @@ import java.util.List;
 
 public class AttendanceFileHandler implements IAttendanceDataHandler {
 
-    SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    String dataPath = "./data/";
+    private final SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    private final String dataPath = "./data/";
 
     /**
      * This is a helper method that will be used in getRecords.

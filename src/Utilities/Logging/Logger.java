@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class LoggerImpl implements ILogger{
+public class Logger implements ILogger{
 
-    Date date = new Date();
-    SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    private final Date date = new Date();
+    private final SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     /**
      * Writes a log entry to the "Logs.log" file with the specified log message.
@@ -51,7 +51,6 @@ public class LoggerImpl implements ILogger{
             fw.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
-            //yabni ya3ni e7na bn wrie el errors fe log file 34an enta t throw exception w howa b write el file????
         }
     }
 }
