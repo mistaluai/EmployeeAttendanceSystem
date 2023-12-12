@@ -28,7 +28,7 @@ public class Supervisor extends Employee {
      * @param updatedRecord The updated attendance record.
      */
     public void editAttendance(int ID, AttendanceRecord updatedRecord) {
-        IAttendanceCommand editAttendanceCommand = new EditAttendance(getAttendanceManager(), getId(), updatedRecord);
+        IAttendanceCommand editAttendanceCommand = new EditAttendance(, ID, updatedRecord);
         editAttendanceCommand.execute();
     }
 
@@ -37,6 +37,6 @@ public class Supervisor extends Employee {
      * @param ID The employee ID whose attendance history is to be viewed.
      */
     public void superViewAttendanceHistory(int ID) {
-        IAttendanceCommand superViewAttendanceHistoryCommand = new SuperViewAttendanceHistory(getAttendanceManager(), getId());
+        IAttendanceCommand superViewAttendanceHistoryCommand = new SuperViewAttendanceHistory(getAttendanceManager(), ID);
     }
 }

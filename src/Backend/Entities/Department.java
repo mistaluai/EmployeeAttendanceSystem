@@ -6,7 +6,7 @@ package Backend.Entities;
 public class Department {
     // Private fields
     private final String departmentName; // The name of the department
-    private final Employee supervisor; // The supervisor of the department
+    private Employee supervisor; // The supervisor of the department
 
     /**
      * Constructs a Department object with a department name and supervisor.

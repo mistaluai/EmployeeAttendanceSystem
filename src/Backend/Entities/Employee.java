@@ -9,9 +9,10 @@ import Backend.AttendanceManagment.AttendanceManager;
      */
 public class Employee {
     // Employee attributes
-    private final String name, position;
+    private final String name;
+    private String position;
     private final int id;
-    private final Department department;
+    private Department department;
     private final AttendanceManager attendanceManager;
 
     /**
