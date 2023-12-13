@@ -17,28 +17,25 @@ public class EmployeeProfile extends JFrame {
         //Sets title of the window
         setTitle("Employee's Profile");
         //sets the size of the window
-        setSize(400, 400);
-        setMinimumSize(new Dimension(400, 400));
-        setMaximumSize(new Dimension(400, 400));
+        setSize(400, 300);
+        setMinimumSize(new Dimension(400, 300));
+        setMaximumSize(new Dimension(400, 300));
+        //set the layout
         //create a global font to be used by the components
         Font globalFontBold = new Font("Lucida Grande", Font.BOLD, 13);
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
 
 
-        //create and initialize a title label with the employee's name
-        //JLabel titleLable = new JLabel(employeeProfile.getName() + "'s Name", JLabel.CENTER );
-        JLabel titleLable = new JLabel("Luai" + "'s Name", JLabel.CENTER); //test driver
-        titleLable.setFont(globalFontBold);
-
         //create a new panel for the window's body
-        JPanel mainBody = new JPanel(new GridLayout(1,2));
+        JPanel mainBody = new JPanel();
+        GridBagLayout mainBodyLayout = new GridBagLayout();
+        GridBagConstraints mainBodyConstraints = new GridBagConstraints();
+        mainBody.setLayout(mainBodyLayout);
 
-        //create new panel for the employee's information
-        JPanel information = new JPanel();
+
         //create and initialize a label that shows the information of the employee
-
         /*
-        JTextArea profileLabel = new JTextArea(
+        JTextArea employeeInformation = new JTextArea(
           "Name: " + employeeProfile.getName() +
           "\nID: " + employeeProfile.getId() +
           "\nPosition: " + employeeProfile.getPosition() +
@@ -47,26 +44,59 @@ public class EmployeeProfile extends JFrame {
         );
         */
         //test driver start
-        JTextArea profileLabel = new JTextArea(
+        JTextArea employeeInformation = new JTextArea(
                 "Name: " + "Luai Waleed" +
                         "\nID: " + "11" +
                         "\nPosition: " + "Computer Engineer" +
-                        "\nDepartment: " + "Computers & Systems Department",
+                        "\nDepartment: " + "Systems",
                 4, 1
         ); //test driver end
         //sets the font of the text area
-        profileLabel.setFont(globalFont);
+        employeeInformation.setFont(globalFont);
         //make sure no one can edit the text area (read only)
-        profileLabel.setEditable(false);
+        employeeInformation.setEditable(false);
         //make sure it has the same background as the main window
-        profileLabel.setBackground(getBackground());
-        //adds the text area to the panel
-        information.add(profileLabel);
+        employeeInformation.setBackground(getBackground());
+
+
+        //create a new panel for buttons of the employee profile with grid layout that takes 5 vertical items and one column
+        GridLayout buttonsLayout = new GridLayout(5, 1);
+        JPanel buttons = new JPanel(buttonsLayout);
+        buttonsLayout.setVgap(20);
+
+
+        //create button for marking attendance
+        JButton markAttendanceButton = new JButton("Mark Attendance");
+        markAttendanceButton.setPreferredSize(new Dimension(150, 32));
+        markAttendanceButton.setFont(globalFontBold);
+
+        //create button for viewing attendance history
+        JButton viewAttendanceButton = new JButton("View Attendance History");
+        viewAttendanceButton.setPreferredSize(new Dimension(150, 32));
+        viewAttendanceButton.setFont(globalFontBold);
+
+        //create button for gaining supervisor privileges
+        JButton supervisorModeButton = new JButton("Log in as Supervisor");
+        supervisorModeButton.setPreferredSize(new Dimension(150, 32));
+        supervisorModeButton.setFont(globalFontBold);
+
+        //add gap before the buttons
+        buttons.add(Box.createVerticalStrut(50));
+        //add the buttons to their panel
+        buttons.add(markAttendanceButton);
+        buttons.add(viewAttendanceButton);
+        buttons.add(supervisorModeButton);
+        //add gap after the buttons
+        buttons.add(Box.createVerticalStrut(50));
+
 
         //add panels to the main body
-        mainBody.add(information);
+        mainBodyConstraints.anchor = mainBodyConstraints.WEST;
+        mainBodyConstraints.weightx = 0.05;
+        mainBody.add(employeeInformation, mainBodyConstraints);
+        mainBodyConstraints.anchor = mainBodyConstraints.EAST;
+        mainBody.add(buttons, mainBodyConstraints);
         //add components to the main window
-        add(titleLable);
         add(mainBody);
         //sets the windows to be visible
         setVisible(true);
