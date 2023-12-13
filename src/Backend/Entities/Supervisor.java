@@ -44,5 +44,6 @@ public class Supervisor extends Employee {
      */
     public void superViewAttendanceHistory(int ID) {
         IAttendanceCommand superViewAttendanceHistoryCommand = new SuperViewAttendanceHistory(ID);
+        superViewAttendanceHistoryCommand.execute();
     }
 }

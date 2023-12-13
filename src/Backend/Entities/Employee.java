@@ -5,7 +5,6 @@ import Backend.AttendanceManagment.AttendanceCommands.MarkAttendance;
 import Backend.AttendanceManagment.AttendanceCommands.ViewAttendanceHistory;
 import Backend.AttendanceManagment.AttendanceManager;
 import Utilities.DataHandling.AttendanceFileHandler;
-import Utilities.DataHandling.IAttendanceDataHandler;
 
 /**
      * This class represents an Employee in the company.
@@ -21,9 +20,7 @@ public class Employee {
     public Employee(int id) {
         this.id = id;
         attendanceManager = new AttendanceManager();
-        isSuperVisor();
-        IAttendanceDataHandler iAttendanceDataHandler = new AttendanceFileHandler();
-        String [] attributes = iAttendanceDataHandler.readEmployeeData(id);
+        String [] attributes = new AttendanceFileHandler().readEmployeeData(id);
         this.name = attributes[1];
         this.position = attributes[2];
         this.department = new Department(attributes[3], attributes[4]);
