@@ -82,7 +82,7 @@ public class LandingWindow extends JFrame  {
             Employee employeeAccount = null;
 
             //create new profile window
-            EmployeeProfile employeeProfileWindow = new EmployeeProfile(LandingWindow.this, employeeAccount);
+            EmployeeProfileWindow employeeProfileWindow = new EmployeeProfileWindow(LandingWindow.this, employeeAccount);
 
             //hides current landing window
             LandingWindow.this.setVisible(false);

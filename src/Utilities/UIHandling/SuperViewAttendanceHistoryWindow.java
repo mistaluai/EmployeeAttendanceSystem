@@ -1,25 +1,25 @@
 package Utilities.UIHandling;
 
 import Backend.Entities.Employee;
+import Backend.Entities.Supervisor;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class ViewAttendanceWindow extends JFrame {
-    private Employee employeeProfile;
-    private EmployeeProfileWindow employeeProfileWindow;
+public class SuperViewAttendanceHistoryWindow extends JFrame {
+    private Supervisor supervisorProfile;
+    private SupervisorWindow supervisorWindow;
 
-    public ViewAttendanceWindow(EmployeeProfileWindow employeeProfileWindow, Employee employeeProfile) {
-        //set the employee profile to access his data
-        this.employeeProfile = employeeProfile;
+    public SuperViewAttendanceHistoryWindow (SupervisorWindow supervisorWindow, Employee supervisorProfile, int ID) {
+        //set the supervisor profile to access his data
+        this.supervisorProfile = (Supervisor) supervisorProfile;
         //set the profile window to access it if we wanted to go back
-        this.employeeProfileWindow = employeeProfileWindow;
+        this.supervisorWindow = supervisorWindow;
 
         //Sets title of the window
-        //setTitle(employeeProfile.getName() + "'s Attendance History");
-        setTitle("Luai's Attendance History"); //test driver
+        setTitle("Attendance History of Employee " + ID);
         //sets the size of the window
         setSize(400, 300);
         setMinimumSize(new Dimension(400, 300));
@@ -30,7 +30,7 @@ public class ViewAttendanceWindow extends JFrame {
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
 
         //initialize the data that will be shown
-        //String[][] attendanceHistory = employeeProfile.viewAttendanceHistory();
+        //String[][] attendanceHistory = this.supervisorProfile.superViewAttendanceHistory(ID);
         //test driver start
         String[][] attendanceHistory = {
                 {"12/12/2023", "11:27:44", "11:27:44"},
@@ -62,7 +62,7 @@ public class ViewAttendanceWindow extends JFrame {
         //show the window
         setVisible(true);
 
-        //add action listener to the window to go back to the profile when this one gets closed
+        //add action listener to the window to go back to the supervisor window when this one gets closed
         addWindowListener(new WindowAdapter() {
             /**
              * Invoked when a window is being closed.
@@ -70,8 +70,9 @@ public class ViewAttendanceWindow extends JFrame {
              * @param e
              */
             public void windowClosing(WindowEvent e) {
-                employeeProfileWindow.setVisible(true);
+                supervisorWindow.setVisible(true);
             }
         });
     }
+
 }

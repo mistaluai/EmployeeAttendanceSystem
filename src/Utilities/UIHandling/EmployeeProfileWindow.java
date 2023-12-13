@@ -11,10 +11,10 @@ import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class EmployeeProfile extends JFrame {
+public class EmployeeProfileWindow extends JFrame {
     Employee employeeProfile;
     LandingWindow landingWindow;
-    public EmployeeProfile(LandingWindow landingWindow, Employee employeeProfile) {
+    public EmployeeProfileWindow(LandingWindow landingWindow, Employee employeeProfile) {
         //set the employee profile to access his data
         this.employeeProfile = employeeProfile;
         //set the landing window to access it if we wanted to go back
@@ -141,7 +141,7 @@ public class EmployeeProfile extends JFrame {
             Date checkTime = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             String checkTimeString = sdf.format(checkTime);
-            JOptionPane.showMessageDialog(EmployeeProfile.this, state + " successfully \nAt time: " + checkTimeString, "Attendance Checked", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(EmployeeProfileWindow.this, state + " successfully \nAt time: " + checkTimeString, "Attendance Checked", JOptionPane.PLAIN_MESSAGE);
 
         }
     }
@@ -154,8 +154,8 @@ public class EmployeeProfile extends JFrame {
          * @param e the event to be processed
          */
         public void actionPerformed(ActionEvent e) {
-            new ViewAttendanceWindow(EmployeeProfile.this, employeeProfile);
-            EmployeeProfile.this.setVisible(false);
+            new ViewAttendanceWindow(EmployeeProfileWindow.this, employeeProfile);
+            EmployeeProfileWindow.this.setVisible(false);
         }
     }
 
