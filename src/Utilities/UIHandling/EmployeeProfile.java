@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -108,8 +110,20 @@ public class EmployeeProfile extends JFrame {
         mainBody.add(buttons, mainBodyConstraints);
         //add components to the main window
         add(mainBody);
-        //sets the windows to be visible
+        //sets the window to be visible
         setVisible(true);
+
+        //add action listener to the window to go back to the landing window when this one gets closed
+        addWindowListener(new WindowAdapter() {
+            /**
+             * Invoked when a window is being closed.
+             * sets the visibility of the previous page to be true
+             * @param e
+             */
+            public void windowClosing(WindowEvent e) {
+                landingWindow.setVisible(true);
+            }
+        });
     }
 
     private class MarkAttendaceActionListener implements ActionListener {
@@ -140,7 +154,8 @@ public class EmployeeProfile extends JFrame {
          * @param e the event to be processed
          */
         public void actionPerformed(ActionEvent e) {
-
+            new ViewAttendanceWindow(EmployeeProfile.this, employeeProfile);
+            EmployeeProfile.this.setVisible(false);
         }
     }
 
@@ -155,4 +170,5 @@ public class EmployeeProfile extends JFrame {
 
         }
     }
+
 }
