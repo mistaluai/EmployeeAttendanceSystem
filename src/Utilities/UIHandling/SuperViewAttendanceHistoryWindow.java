@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class SuperViewAttendanceHistoryWindow extends JFrame {
+
     private Supervisor supervisorProfile;
     private SupervisorWindow supervisorWindow;
 

@@ -5,6 +5,8 @@ import Backend.Entities.Supervisor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -15,9 +17,9 @@ public class SupervisorWindow extends JFrame {
 
     public SupervisorWindow(EmployeeProfileWindow employeeProfileWindow, Employee supervisorProfile) {
         //set the supervisor profile to access his data
-        //this.supervisorProfile = (Supervisor) supervisorProfile;
+        this.supervisorProfile = (Supervisor) supervisorProfile;
         //set the profile window to access it if we wanted to go back
-        //this.employeeProfileWindow = employeeProfileWindow;
+        this.employeeProfileWindow = employeeProfileWindow;
 
         //Sets title of the window
         setTitle("Supervisor");
@@ -53,10 +55,14 @@ public class SupervisorWindow extends JFrame {
         //create button for viewing attendance history of the employee
         JButton viewAttendanceHistoryButton = new JButton("View attendance History");
         viewAttendanceHistoryButton.setFont(globalFontBold);
+        ViewAttendanceActionListener viewAttendanceActionListener = new ViewAttendanceActionListener();
+        viewAttendanceHistoryButton.addActionListener(viewAttendanceActionListener);
 
         //create button for editing attendance history of the employee
         JButton editAttendanceButton = new JButton("Edit attendance");
         editAttendanceButton.setFont(globalFontBold);
+        EditAttendanceActionListener editAttendanceActionListener = new EditAttendanceActionListener();
+        editAttendanceButton.addActionListener(editAttendanceActionListener);
 
         //add buttons to their parent panel
         buttons.add(viewAttendanceHistoryButton);
@@ -83,7 +89,50 @@ public class SupervisorWindow extends JFrame {
         });
     }
 
+    private class ViewAttendanceActionListener implements ActionListener {
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the event to be processed
+         */
+        public void actionPerformed(ActionEvent e) {
+            String ID = idField.getText();
+            int idValue = 0;
+            //makes sure that the text field is not empty
+            if (ID.length() == 0) {
+                //show a message that clearly tells the problem
+                JOptionPane.showMessageDialog(SupervisorWindow.this, "ID can't be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+                //exit the execution
+                return;
+            }
+            //makes sure that the text field doesn't contain any input but numbers
+            try {
+                //try to parse the ID to integer
+                idValue = Integer.parseInt(ID);
+            } catch (NumberFormatException nfe) {
+                //show a message that clearly tells the problem
+                JOptionPane.showMessageDialog(SupervisorWindow.this, "ID can only include numbers!", "Error", JOptionPane.ERROR_MESSAGE);
+                //exit the execution
+                return;
+            }
+            new SuperViewAttendanceHistoryWindow(SupervisorWindow.this, supervisorProfile, idValue);
+
+        }
+    }
+
+    private class EditAttendanceActionListener implements ActionListener {
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the event to be processed
+         */
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
     public static void main(String[] args) {
-        new SupervisorWindow(null, null);
     }
 }
