@@ -1,13 +1,15 @@
 package Backend.AttendanceManagment;
 
 import Backend.AttendanceManagment.AttendanceStates.IAttendanceState;
+import Utilities.DataHandling.AttendanceFileHandler;
+import Utilities.DataHandling.IAttendanceDataHandler;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class AttendanceManager implements IAttendanceManager {
 
     private int employeeID;
-    private ArrayList<AttendanceRecord> attendanceRecords;
+    private List<AttendanceRecord> attendanceRecords;
     private IAttendanceState attendanceState;
 
 
@@ -19,11 +21,11 @@ public class AttendanceManager implements IAttendanceManager {
 
     }
 
-    public void viewAttendanceHistory() {
+    public String [][] viewAttendanceHistory() {
 
     }
 
-    public void superViewAttendanceHistory(int ID) {
+    public String [][] superViewAttendanceHistory(int ID) {
 
     }
 }

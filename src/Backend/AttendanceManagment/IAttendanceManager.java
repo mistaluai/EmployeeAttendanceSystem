@@ -16,11 +16,11 @@ public interface IAttendanceManager {
     /**
      * views the attendance history of the employee
      */
-    void viewAttendanceHistory();
+    String[][] viewAttendanceHistory();
 
     /**
      * views the attendance history of another employee
      * @param ID: Target employee's ID
      */
-    void superViewAttendanceHistory(int ID);
+    String[][] superViewAttendanceHistory(int ID);
 }
