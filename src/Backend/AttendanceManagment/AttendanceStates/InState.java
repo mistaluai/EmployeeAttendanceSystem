@@ -9,6 +9,7 @@ public class InState extends AttendanceState{
     public InState(AttendanceManager attendanceManager) {
         super(attendanceManager);
     }
+
     @Override
     public void markAttendance() {
         attendanceRecord.setTimeOut(new Date());
