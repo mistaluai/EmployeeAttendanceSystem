@@ -22,11 +22,11 @@ public class AttendanceManager implements IAttendanceManager {
 
     }
 
-    public String [][] viewAttendanceHistory() {
-        return superViewAttendanceHistory(employeeID);
+    public void viewAttendanceHistory(String[][] attendanceHistory) {
+        superViewAttendanceHistory(employeeID, attendanceHistory);
     }
 
-    public String [][] superViewAttendanceHistory(int ID) {
+    public void superViewAttendanceHistory(int ID, String[][] attendanceHistory) {
         IAttendanceDataHandler attendanceDataHandler = new AttendanceFileHandler();
         attendanceRecords = attendanceDataHandler.getRecords(ID);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -38,6 +38,6 @@ public class AttendanceManager implements IAttendanceManager {
             records[i][1] = timeFormat.format(myRecord.getTimeIn());
             records[i][2] = timeFormat.format(myRecord.getTimeOut());
         }
-        return records;
+        attendanceHistory = records;
     }
 }

@@ -85,8 +85,8 @@ public class Employee {
     /**
      * View the attendance history of the employee.
      */
-    public void viewAttendanceHistory() {
-        IAttendanceCommand viewAttendanceHistoryCommand = new ViewAttendanceHistory(getAttendanceManager());
+    public void viewAttendanceHistory(String[][] attendanceHistory) {
+        IAttendanceCommand viewAttendanceHistoryCommand = new ViewAttendanceHistory(getAttendanceManager(), attendanceHistory);
         viewAttendanceHistoryCommand.execute();
     }
 }
