@@ -2,7 +2,6 @@ package Backend.AttendanceManagment;
 
 import Backend.AttendanceManagment.AttendanceStates.AttendanceState;
 import Utilities.DataHandling.AttendanceFileHandler;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 

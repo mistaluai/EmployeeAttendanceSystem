@@ -62,8 +62,8 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
     public List<AttendanceRecord> getRecords(int ID) {
         List<AttendanceRecord> temp = new ArrayList<>();
 
-        try{
-            FileReader fr = new FileReader(dataPath+ID+".csv");
+        try {
+            FileReader fr = new FileReader(dataPath + ID + ".csv");
             BufferedReader reader = new BufferedReader(fr);
 
             String line;
