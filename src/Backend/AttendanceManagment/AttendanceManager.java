@@ -1,18 +1,23 @@
 package Backend.AttendanceManagment;
 
-import Backend.AttendanceManagment.AttendanceStates.IAttendanceState;
+import Backend.AttendanceManagment.AttendanceStates.AttendanceState;
+import Utilities.DataHandling.AttendanceFileHandler;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class AttendanceManager implements IAttendanceManager {
 
     private int employeeID;
-    private ArrayList<AttendanceRecord> attendanceRecords;
-    private IAttendanceState attendanceState;
+    private List<AttendanceRecord> attendanceRecords;
+    private AttendanceState attendanceState;
 
-    public AttendanceManager(int employeeID, ArrayList<AttendanceRecord> attendanceRecords, IAttendanceState attendanceState) {
+    public AttendanceManager(int employeeID) {
         this.employeeID = employeeID;
-        this.attendanceRecords = attendanceRecords;
+        attendanceRecords = new AttendanceFileHandler().getRecords(employeeID);
+    }
+
+    public void setAttendanceState(AttendanceState attendanceState) {
         this.attendanceState = attendanceState;
     }
 
@@ -20,39 +25,32 @@ public class AttendanceManager implements IAttendanceManager {
         return employeeID;
     }
 
-    public ArrayList<AttendanceRecord> getAttendanceRecords() {
+    public List<AttendanceRecord> getAttendanceRecords() {
         return attendanceRecords;
     }
 
-    public IAttendanceState getAttendanceState() {
+    public AttendanceState getAttendanceState() {
         return attendanceState;
     }
 
     public void markAttendance() {
-        attendanceState.markAttendance(attendanceRecords);
-    }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
-    }
-
-    public void setAttendanceRecords(ArrayList<AttendanceRecord> attendanceRecords) {
-        this.attendanceRecords = attendanceRecords;
-    }
-
-    public void setAttendanceState(IAttendanceState attendanceState) {
-        this.attendanceState = attendanceState;
     }
 
     public void editAttendance(int ID, AttendanceRecord updatedRecord) {
-        for (int i = 0; i < attendanceRecords.size(); i++) {
-            if (updatedRecord.getDate().getYear() == attendanceRecords.get(i).getDate().getYear() &&
-                updatedRecord.getDate().getMonth() == attendanceRecords.get(i).getDate().getMonth() &&
-                updatedRecord.getDate().getDay() == attendanceRecords.get(i).getDate().getDay()) {
-                attendanceRecords.set(i, updatedRecord);
+        AttendanceFileHandler fileHandler = new AttendanceFileHandler();
+        List<AttendanceRecord> updatedAttendanceRecords = fileHandler.getRecords(ID);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String updatedDate = formatter.format(updatedRecord.getDate());
+        String existedDate;
+        for (int i = 0; i < updatedAttendanceRecords.size(); i++) {
+            existedDate = formatter.format(updatedAttendanceRecords.get(i).getDate());
+            if (updatedDate.equals(existedDate)) {
+                updatedAttendanceRecords.set(i, updatedRecord);
                 break;
             }
         }
+        fileHandler.editRecord(ID, updatedAttendanceRecords);
     }
 
     public void viewAttendanceHistory() {
