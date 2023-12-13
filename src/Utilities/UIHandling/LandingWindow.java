@@ -1,6 +1,7 @@
 package Utilities.UIHandling;
 
 import Backend.Entities.Employee;
+import Utilities.UIHandling.AccessLayer.EmployeeLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,7 +80,11 @@ public class LandingWindow extends JFrame  {
             }
             //load the employee's data using the loader provided by the back end
             //Employee employeeAccount = IEmployeeLoader.getEmployee(idValue);
-            Employee employeeAccount = null;
+            Employee employeeAccount = new EmployeeLoader().getEmployee(idValue);
+            if (employeeAccount == null) {
+                JOptionPane.showMessageDialog(LandingWindow.this, "ID invalid!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             //create new profile window
             EmployeeProfileWindow employeeProfileWindow = new EmployeeProfileWindow(LandingWindow.this, employeeAccount);

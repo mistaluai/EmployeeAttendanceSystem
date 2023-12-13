@@ -2,6 +2,7 @@ package Utilities.UIHandling;
 
 import Backend.Entities.Employee;
 import Backend.Entities.Supervisor;
+import Utilities.UIHandling.AccessLayer.EmployeeLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -114,6 +115,10 @@ public class SupervisorWindow extends JFrame {
                 //show a message that clearly tells the problem
                 JOptionPane.showMessageDialog(SupervisorWindow.this, "ID can only include numbers!", "Error", JOptionPane.ERROR_MESSAGE);
                 //exit the execution
+                return;
+            }
+            if (new EmployeeLoader().getEmployee(idValue) == null) {
+                JOptionPane.showMessageDialog(SupervisorWindow.this, "ID invalid!", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             new SuperViewAttendanceHistoryWindow(SupervisorWindow.this, supervisorProfile, idValue);

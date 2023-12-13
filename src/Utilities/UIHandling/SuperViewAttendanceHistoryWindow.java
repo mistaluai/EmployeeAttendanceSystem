@@ -31,14 +31,15 @@ public class SuperViewAttendanceHistoryWindow extends JFrame {
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
 
         //initialize the data that will be shown
-        //String[][] attendanceHistory = this.supervisorProfile.superViewAttendanceHistory(ID);
-        //test driver start
+        String[][] attendanceHistory =  {  {"Default", "Default", "Default"}};
+        this.supervisorProfile.superViewAttendanceHistory(ID, attendanceHistory);
+        /*test driver start
         String[][] attendanceHistory = {
                 {"12/12/2023", "11:27:44", "11:27:44"},
                 {"12/12/2023", "11:27:44", "11:27:44"},
                 {"12/12/2023", "11:27:44", "11:27:44"}
         };
-        //test driver end
+        //test driver end*/
         String[] titles = {"Date", "Time in", "Time out"};
 
         //initialize the table using the given data

@@ -40,7 +40,7 @@ public class EmployeeProfileWindow extends JFrame {
 
 
         //create and initialize a label that shows the information of the employee
-        /*
+
         JTextArea employeeInformation = new JTextArea(
           "Name: " + employeeProfile.getName() +
           "\nID: " + employeeProfile.getId() +
@@ -48,15 +48,15 @@ public class EmployeeProfileWindow extends JFrame {
                   "\nDepartment: " + employeeProfile.getDepartment().getDepartmentName(),
                 4, 1
         );
-        */
-        //test driver start
+
+        /*test driver start
         JTextArea employeeInformation = new JTextArea(
                 "Name: " + "Luai Waleed" +
                         "\nID: " + "11" +
                         "\nPosition: " + "Computer Engineer" +
                         "\nDepartment: " + "Systems",
                 4, 1
-        ); //test driver end
+        ); *///test driver end
         //sets the font of the text area
         employeeInformation.setFont(globalFont);
         //make sure no one can edit the text area (read only)

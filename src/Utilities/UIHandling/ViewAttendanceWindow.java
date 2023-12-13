@@ -18,8 +18,8 @@ public class ViewAttendanceWindow extends JFrame {
         this.employeeProfileWindow = employeeProfileWindow;
 
         //Sets title of the window
-        //setTitle(employeeProfile.getName() + "'s Attendance History");
-        setTitle("Luai's Attendance History"); //test driver
+        setTitle(employeeProfile.getName() + "'s Attendance History");
+        //setTitle("Luai's Attendance History"); //test driver
         //sets the size of the window
         setSize(400, 300);
         setMinimumSize(new Dimension(400, 300));
@@ -30,14 +30,15 @@ public class ViewAttendanceWindow extends JFrame {
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
 
         //initialize the data that will be shown
-        //String[][] attendanceHistory = employeeProfile.viewAttendanceHistory();
-        //test driver start
+        String[][] attendanceHistory = {  {"Default", "Default", "Default"}};
+        employeeProfile.viewAttendanceHistory(attendanceHistory);
+        /*test driver start
         String[][] attendanceHistory = {
                 {"12/12/2023", "11:27:44", "11:27:44"},
                 {"12/12/2023", "11:27:44", "11:27:44"},
                 {"12/12/2023", "11:27:44", "11:27:44"}
         };
-        //test driver end
+        //test driver end */
         String[] titles = {"Date", "Time in", "Time out"};
 
         //initialize the table using the given data
