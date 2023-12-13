@@ -16,13 +16,39 @@ public class AttendanceManager implements IAttendanceManager {
         this.attendanceState = attendanceState;
     }
 
+    public int getEmployeeID() {
+        return employeeID;
+    }
+
+    public ArrayList<AttendanceRecord> getAttendanceRecords() {
+        return attendanceRecords;
+    }
+
+    public IAttendanceState getAttendanceState() {
+        return attendanceState;
+    }
+
     public void markAttendance() {
         attendanceState.markAttendance(attendanceRecords);
     }
 
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public void setAttendanceRecords(ArrayList<AttendanceRecord> attendanceRecords) {
+        this.attendanceRecords = attendanceRecords;
+    }
+
+    public void setAttendanceState(IAttendanceState attendanceState) {
+        this.attendanceState = attendanceState;
+    }
+
     public void editAttendance(int ID, AttendanceRecord updatedRecord) {
         for (int i = 0; i < attendanceRecords.size(); i++) {
-            if (attendanceRecords.get(i).getDate() == updatedRecord.getDate()) {
+            if (updatedRecord.getDate().getYear() == attendanceRecords.get(i).getDate().getYear() &&
+                updatedRecord.getDate().getMonth() == attendanceRecords.get(i).getDate().getMonth() &&
+                updatedRecord.getDate().getDay() == attendanceRecords.get(i).getDate().getDay()) {
                 attendanceRecords.set(i, updatedRecord);
                 break;
             }
@@ -30,14 +56,11 @@ public class AttendanceManager implements IAttendanceManager {
     }
 
     public void viewAttendanceHistory() {
-        superViewAttendanceHistory(this.employeeID);
+
     }
 
     public void superViewAttendanceHistory(int ID) {
-        System.out.println("Date\t\tTime In\t\tTime Out\n" +
-                           "-----------------------------");
-        for (AttendanceRecord record : attendanceRecords) {
-            System.out.println(record.getDate() + "\t\t" + record.getTimeIn() + "\t\t" + record.getTimeOut());
-        }
+
     }
+
 }
