@@ -26,7 +26,7 @@ public class SuperViewAttendanceHistoryWindow extends JFrame {
         setMinimumSize(new Dimension(400, 300));
         setMaximumSize(new Dimension(400, 300));
 
-        //create a global font to be used by the components
+        // create a global font to be used by the components
         Font globalFontBold = new Font("Lucida Grande", Font.BOLD, 13);
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
 
