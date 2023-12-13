@@ -19,7 +19,7 @@ public class Employee {
 
     public Employee(int id) {
         this.id = id;
-        attendanceManager = new AttendanceManager();
+        attendanceManager = new AttendanceManager(id);
         String [] attributes = new AttendanceFileHandler().readEmployeeData(id);
         this.name = attributes[1];
         this.position = attributes[2];
