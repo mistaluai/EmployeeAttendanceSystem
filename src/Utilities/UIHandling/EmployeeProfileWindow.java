@@ -103,10 +103,10 @@ public class EmployeeProfileWindow extends JFrame {
 
 
         //add panels to the main body
-        mainBodyConstraints.anchor = mainBodyConstraints.WEST;
+        mainBodyConstraints.anchor = GridBagConstraints.WEST;
         mainBodyConstraints.weightx = 0.05;
         mainBody.add(employeeInformation, mainBodyConstraints);
-        mainBodyConstraints.anchor = mainBodyConstraints.EAST;
+        mainBodyConstraints.anchor = GridBagConstraints.EAST;
         mainBody.add(buttons, mainBodyConstraints);
         //add components to the main window
         add(mainBody);

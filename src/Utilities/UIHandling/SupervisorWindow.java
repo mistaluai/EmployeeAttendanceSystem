@@ -90,6 +90,33 @@ public class SupervisorWindow extends JFrame {
         });
     }
 
+    private int getID() {
+        String ID = idField.getText();
+        int idValue = 0;
+        //makes sure that the text field is not empty
+        if (ID.length() == 0) {
+            //show a message that clearly tells the problem
+            JOptionPane.showMessageDialog(SupervisorWindow.this, "ID can't be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+            //exit the execution
+            return-1;
+        }
+        //makes sure that the text field doesn't contain any input but numbers
+        try {
+            //try to parse the ID to integer
+            idValue = Integer.parseInt(ID);
+        } catch (NumberFormatException nfe) {
+            //show a message that clearly tells the problem
+            JOptionPane.showMessageDialog(SupervisorWindow.this, "ID can only include numbers!", "Error", JOptionPane.ERROR_MESSAGE);
+            //exit the execution
+            return-1;
+        }
+        if (new EmployeeLoader().getEmployee(idValue) == null) {
+            JOptionPane.showMessageDialog(SupervisorWindow.this, "ID invalid!", "Error", JOptionPane.ERROR_MESSAGE);
+            return-1;
+        }
+        return idValue;
+    }
+
     private class ViewAttendanceActionListener implements ActionListener {
 
         /**
@@ -98,30 +125,11 @@ public class SupervisorWindow extends JFrame {
          * @param e the event to be processed
          */
         public void actionPerformed(ActionEvent e) {
-            String ID = idField.getText();
-            int idValue = 0;
-            //makes sure that the text field is not empty
-            if (ID.length() == 0) {
-                //show a message that clearly tells the problem
-                JOptionPane.showMessageDialog(SupervisorWindow.this, "ID can't be empty!", "Error", JOptionPane.ERROR_MESSAGE);
-                //exit the execution
-                return;
+            int id = getID();
+            if (id != -1) {
+                new SuperViewAttendanceHistoryWindow(SupervisorWindow.this, supervisorProfile, id);
+                SupervisorWindow.this.setVisible(false);
             }
-            //makes sure that the text field doesn't contain any input but numbers
-            try {
-                //try to parse the ID to integer
-                idValue = Integer.parseInt(ID);
-            } catch (NumberFormatException nfe) {
-                //show a message that clearly tells the problem
-                JOptionPane.showMessageDialog(SupervisorWindow.this, "ID can only include numbers!", "Error", JOptionPane.ERROR_MESSAGE);
-                //exit the execution
-                return;
-            }
-            if (new EmployeeLoader().getEmployee(idValue) == null) {
-                JOptionPane.showMessageDialog(SupervisorWindow.this, "ID invalid!", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            new SuperViewAttendanceHistoryWindow(SupervisorWindow.this, supervisorProfile, idValue);
 
         }
     }
@@ -134,7 +142,11 @@ public class SupervisorWindow extends JFrame {
          * @param e the event to be processed
          */
         public void actionPerformed(ActionEvent e) {
-
+            int id = getID();
+            if (id != -1) {
+                new EditAttendanceWindow(SupervisorWindow.this, supervisorProfile, id);
+                SupervisorWindow.this.setVisible(false);
+            }
         }
     }
 

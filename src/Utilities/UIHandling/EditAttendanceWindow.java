@@ -1,5 +1,6 @@
 package Utilities.UIHandling;
 
+import Backend.AttendanceManagment.AttendanceRecord;
 import Backend.Entities.Supervisor;
 
 import javax.swing.*;
@@ -16,6 +17,9 @@ public class EditAttendanceWindow extends JFrame {
     private Supervisor supervisorProfile;
     private SupervisorWindow supervisorWindow;
     private int ID;
+    JSpinner datePicker;
+    JSpinner timeInPicker;
+    JSpinner timeOutPicker;
 
     public EditAttendanceWindow(SupervisorWindow supervisorWindow, Supervisor supervisorProfile, int ID) {
         //set the supervisor profile to access his data
@@ -58,7 +62,7 @@ public class EditAttendanceWindow extends JFrame {
         //create a date model for the spinner field
         SpinnerDateModel spinnerDateModel = new SpinnerDateModel(new Date(), null, null, Calendar.MONTH);
         //initialize the date picker
-        JSpinner datePicker = new JSpinner(spinnerDateModel);
+        datePicker = new JSpinner(spinnerDateModel);
         //sets its preferred size
         datePicker.setPreferredSize(new Dimension(128, 32));
         //create a date editor for formatting the date in the spinner field
@@ -81,7 +85,7 @@ public class EditAttendanceWindow extends JFrame {
         //create a date model for the spinner field
         SpinnerDateModel spinnerTimeInModel = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
         //initialize the date picker
-        JSpinner timeInPicker = new JSpinner(spinnerTimeInModel);
+        timeInPicker = new JSpinner(spinnerTimeInModel);
         //sets its preferred size
         timeInPicker.setPreferredSize(new Dimension(128, 32));
         //create a date editor for formatting the date in the spinner field
@@ -104,7 +108,7 @@ public class EditAttendanceWindow extends JFrame {
         //create a date model for the spinner field
         SpinnerDateModel spinnerTimeOutModel = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
         //initialize the date picker
-        JSpinner timeOutPicker = new JSpinner(spinnerTimeOutModel);
+        timeOutPicker = new JSpinner(spinnerTimeOutModel);
         //sets its preferred size
         timeOutPicker.setPreferredSize(new Dimension(128, 32));
         //create a date editor for formatting the date in the spinner field
@@ -160,10 +164,13 @@ public class EditAttendanceWindow extends JFrame {
          * @param e the event to be processed
          */
         public void actionPerformed(ActionEvent e) {
-
+            Date date = (Date) datePicker.getValue();
+            Date timeIn = (Date) timeInPicker.getValue();
+            Date timeOut = (Date) timeOutPicker.getValue();
+            AttendanceRecord updatedRecord = new AttendanceRecord(date, timeIn, timeOut);
+            supervisorProfile.editAttendance(ID, updatedRecord);
+            JOptionPane.showMessageDialog(EditAttendanceWindow.this, updatedRecord.toString() , "Edit Done", JOptionPane.PLAIN_MESSAGE);
         }
     }
-    public static void main(String[] args) {
 
-    }
 }
