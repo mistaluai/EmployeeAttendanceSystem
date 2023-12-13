@@ -1,6 +1,8 @@
 package Backend.AttendanceManagment;
 
 import Backend.AttendanceManagment.AttendanceStates.IAttendanceState;
+import Backend.AttendanceManagment.AttendanceStates.InState;
+import Backend.AttendanceManagment.AttendanceStates.OutState;
 import Utilities.DataHandling.AttendanceFileHandler;
 import Utilities.DataHandling.IAttendanceDataHandler;
 
@@ -13,6 +15,22 @@ public class AttendanceManager implements IAttendanceManager {
     private List<AttendanceRecord> attendanceRecords;
     private IAttendanceState attendanceState;
 
+    /**
+     * The constructor uses the ID to get the read the records
+     * and checks the if the state in or out.
+     * @param ID
+     */
+    public AttendanceManager(int ID) {
+        employeeID = ID;
+        attendanceRecords = new AttendanceFileHandler().getRecords(ID);
+        if (attendanceRecords.size() != 0){
+            if (attendanceRecords.get(attendanceRecords.size() - 1) == null){
+                attendanceState = new InState();
+            }
+        }else{
+            attendanceState = new OutState();
+        }
+    }
 
     public void markAttendance() {
 
