@@ -4,11 +4,13 @@ import Backend.AttendanceManagment.IAttendanceManager;
 
 public class ViewAttendanceHistory implements IAttendanceCommand {
     IAttendanceManager attendanceManager;
-    public ViewAttendanceHistory(IAttendanceManager attendanceManager) {
+    String[][] attendanceHistory;
+    public ViewAttendanceHistory(IAttendanceManager attendanceManager, String[][] attendanceHistory) {
         this.attendanceManager = attendanceManager;
+        this.attendanceHistory = attendanceHistory;
     }
 
     public void execute() {
-        attendanceManager.viewAttendanceHistory();
+        attendanceManager.viewAttendanceHistory(attendanceHistory);
     }
 }
