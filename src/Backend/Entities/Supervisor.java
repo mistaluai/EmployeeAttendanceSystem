@@ -43,7 +43,8 @@ public class Supervisor extends Employee {
      * Method to view attendance history of employees.
      * @param ID The employee ID whose attendance history is to be viewed.
      */
-    public void superViewAttendanceHistory(int ID) {
-        IAttendanceCommand superViewAttendanceHistoryCommand = new SuperViewAttendanceHistory(new AttendanceManager(), ID);
+    public void superViewAttendanceHistory(int ID, String[][] attendanceHistory) {
+        IAttendanceCommand superViewAttendanceHistoryCommand = new SuperViewAttendanceHistory(getAttendanceManager(), ID, attendanceHistory);
+        superViewAttendanceHistoryCommand.execute();
     }
 }
