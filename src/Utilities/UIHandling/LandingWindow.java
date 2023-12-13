@@ -52,6 +52,11 @@ public class LandingWindow extends JFrame  {
     }
     private class LoginActionListener implements ActionListener {
 
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the event to be processed
+         */
         public void actionPerformed(ActionEvent e) {
             String ID = idField.getText();
             int idValue = 0;

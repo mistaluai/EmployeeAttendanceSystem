@@ -4,6 +4,10 @@ import Backend.Entities.Employee;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class EmployeeProfile extends JFrame {
     Employee employeeProfile;
@@ -69,16 +73,22 @@ public class EmployeeProfile extends JFrame {
         JButton markAttendanceButton = new JButton("Mark Attendance");
         markAttendanceButton.setPreferredSize(new Dimension(150, 32));
         markAttendanceButton.setFont(globalFontBold);
+        MarkAttendaceActionListener markAttendaceActionListener = new MarkAttendaceActionListener();
+        markAttendanceButton.addActionListener(markAttendaceActionListener);
 
         //create button for viewing attendance history
         JButton viewAttendanceButton = new JButton("View Attendance History");
         viewAttendanceButton.setPreferredSize(new Dimension(150, 32));
         viewAttendanceButton.setFont(globalFontBold);
+        ViewAttendaceActionListener viewAttendaceActionListener = new ViewAttendaceActionListener();
+        viewAttendanceButton.addActionListener(viewAttendaceActionListener);
 
         //create button for gaining supervisor privileges
         JButton supervisorModeButton = new JButton("Log in as Supervisor");
         supervisorModeButton.setPreferredSize(new Dimension(150, 32));
         supervisorModeButton.setFont(globalFontBold);
+        SupervisorModeActionListener supervisorModeActionListener = new SupervisorModeActionListener();
+        supervisorModeButton.addActionListener(supervisorModeActionListener);
 
         //add gap before the buttons
         buttons.add(Box.createVerticalStrut(50));
@@ -100,5 +110,49 @@ public class EmployeeProfile extends JFrame {
         add(mainBody);
         //sets the windows to be visible
         setVisible(true);
+    }
+
+    private class MarkAttendaceActionListener implements ActionListener {
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the event to be processed
+         */
+        public void actionPerformed(ActionEvent e) {
+            //mark the employee attendance
+            //employeeProfile.markAttendance();
+            //get the employee attendance state
+            String state = "Checked out"; //changes according to the state
+            Date checkTime = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            String checkTimeString = sdf.format(checkTime);
+            JOptionPane.showMessageDialog(EmployeeProfile.this, state + " successfully \nAt time: " + checkTimeString, "Attendance Checked", JOptionPane.PLAIN_MESSAGE);
+
+        }
+    }
+
+    private class ViewAttendaceActionListener implements ActionListener {
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the event to be processed
+         */
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    private class SupervisorModeActionListener implements ActionListener {
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the event to be processed
+         */
+        public void actionPerformed(ActionEvent e) {
+
+        }
     }
 }
