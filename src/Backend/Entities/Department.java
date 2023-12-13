@@ -6,7 +6,7 @@ package Backend.Entities;
 public class Department {
     // Private fields
     private final String departmentName; // The name of the department
-    private Employee supervisor; // The supervisor of the department
+    private final String supervisor; // The supervisor of the department
 
     /**
      * Constructs a Department object with a department name and supervisor.
@@ -14,7 +14,7 @@ public class Department {
      * @param departmentName The name of the department.
      * @param supervisor     The supervisor of the department.
      */
-    public Department(String departmentName, Employee supervisor) {
+    public Department(String departmentName, String supervisor) {
         this.departmentName = departmentName;
         this.supervisor = supervisor;
     }
@@ -33,7 +33,7 @@ public class Department {
      *
      * @return The supervisor of the department.
      */
-    public Employee getSupervisor() {
+    public String getSupervisor() {
         return supervisor;
     }
 }

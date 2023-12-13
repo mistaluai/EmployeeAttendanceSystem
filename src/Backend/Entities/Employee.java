@@ -4,33 +4,36 @@ import Backend.AttendanceManagment.AttendanceCommands.IAttendanceCommand;
 import Backend.AttendanceManagment.AttendanceCommands.MarkAttendance;
 import Backend.AttendanceManagment.AttendanceCommands.ViewAttendanceHistory;
 import Backend.AttendanceManagment.AttendanceManager;
-    /**
+import Utilities.DataHandling.AttendanceFileHandler;
+import Utilities.DataHandling.IAttendanceDataHandler;
+
+/**
      * This class represents an Employee in the company.
      */
 public class Employee {
     // Employee attributes
     private final String name;
-    private String position;
+    private final String position;
     private final int id;
-    private Department department;
+    private final Department department;
     private final AttendanceManager attendanceManager;
 
-    /**
-     * Constructor for creating an Employee object.
-     * @param name The name of the employee.
-     * @param id The unique identifier of the employee.
-     * @param position The position/title of the employee.
-     * @param department The department the employee belongs to.
-     */
-    public Employee(String name, int id, String position, Department department) {
-        this.name = name;
-        this.position = position;
+    public Employee(int id) {
         this.id = id;
-        this.department = department;
         attendanceManager = new AttendanceManager();
+        isSuperVisor();
+        IAttendanceDataHandler iAttendanceDataHandler = new AttendanceFileHandler();
+        String [] attributes = iAttendanceDataHandler.readEmployeeData(id);
+        this.name = attributes[1];
+        this.position = attributes[2];
+        this.department = new Department(attributes[3], attributes[4]);
     }
 
-    /**
+    public boolean isSuperVisor(){
+        return false;
+    }
+
+        /**
      * Get the name of the employee.
      * @return The name of the employee.
      */
