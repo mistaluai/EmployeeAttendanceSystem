@@ -74,7 +74,7 @@ public class LandingWindow extends JFrame  {
             }
             //load the employee's data using the loader provided by the back end
             //Employee employeeAccount = IEmployeeLoader.getEmployee(idValue);
-            Employee employeeAccount = new Employee();
+            Employee employeeAccount = null;
 
             //create new profile window
             EmployeeProfile employeeProfileWindow = new EmployeeProfile(LandingWindow.this, employeeAccount);
