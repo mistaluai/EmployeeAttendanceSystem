@@ -13,10 +13,10 @@ public interface IAttendanceDataHandler {
     List<AttendanceRecord> getRecords(int ID);
 
     /**
-     * updates an existing attendance record of an employee
+     * updates the existing attendance records of an employee
      * @param ID: Target employee ID
-     * @param updatedRecord: the updated record to replace the old record
+     * @param updatedRecords: List of updated records
      */
-    void editRecord(int ID, AttendanceRecord updatedRecord);
+    void editRecord(int ID, List<AttendanceRecord> updatedRecords);
 
 }
