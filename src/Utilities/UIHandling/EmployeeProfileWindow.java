@@ -167,7 +167,11 @@ public class EmployeeProfileWindow extends JFrame {
          * @param e the event to be processed
          */
         public void actionPerformed(ActionEvent e) {
-
+            if (!employeeProfile.isSuperVisor()) {
+                JOptionPane.showMessageDialog(EmployeeProfileWindow.this, "You don't have enough permissions!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            new SupervisorWindow(EmployeeProfileWindow.this, employeeProfile);
         }
     }
 
