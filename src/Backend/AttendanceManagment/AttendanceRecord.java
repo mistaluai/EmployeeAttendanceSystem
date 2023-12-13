@@ -8,13 +8,16 @@ public class AttendanceRecord {
     private Date timeIn;
     private Date timeOut;
 
-    /**
-     * Constructs an AttendanceRecord object
-     */
     public AttendanceRecord() {
         date = new Date();
         timeIn = null;
         timeOut = null;
+    }
+
+    public AttendanceRecord(Date date, Date timeIn, Date timeOut) {
+        this.date = date;
+        this.timeIn = timeIn;
+        this.timeOut = timeOut;
     }
 
     /**

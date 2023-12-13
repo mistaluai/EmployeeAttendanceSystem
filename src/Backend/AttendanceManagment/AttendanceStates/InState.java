@@ -8,6 +8,7 @@ public class InState extends AttendanceState{
 
     public InState(AttendanceManager attendanceManager) {
         super(attendanceManager);
+        attendanceRecord = attendanceManager.getAttendanceRecords().getLast();
     }
 
     @Override
