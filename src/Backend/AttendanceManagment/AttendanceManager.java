@@ -15,6 +15,10 @@ public class AttendanceManager implements IAttendanceManager {
     private List<AttendanceRecord> attendanceRecords;
     private IAttendanceState attendanceState;
 
+    public void setAttendanceState(IAttendanceState attendanceState) {
+        this.attendanceState = attendanceState;
+    }
+
     /**
      * The constructor uses the ID to get the read the records
      * and checks the if the state in or out.
@@ -32,12 +36,26 @@ public class AttendanceManager implements IAttendanceManager {
         }
     }
 
-    public void markAttendance() {
 
+    public void markAttendance() {
+        attendanceState.markAttendance(attendanceRecords, this);
+        new AttendanceFileHandler().editRecord(employeeID, attendanceRecords);
     }
 
     public void editAttendance(int ID, AttendanceRecord updatedRecord) {
-
+        AttendanceFileHandler fileHandler = new AttendanceFileHandler();
+        List<AttendanceRecord> updatedAttendanceRecords = fileHandler.getRecords(ID);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String updatedDate = formatter.format(updatedRecord.getDate());
+        String existedDate;
+        for (int i = 0; i < updatedAttendanceRecords.size(); i++) {
+            existedDate = formatter.format(updatedAttendanceRecords.get(i).getDate());
+            if (updatedDate.equals(existedDate)) {
+                updatedAttendanceRecords.set(i, updatedRecord);
+                break;
+            }
+        }
+        fileHandler.editRecord(ID, updatedAttendanceRecords);
     }
 
     public String [][] viewAttendanceHistory() {
