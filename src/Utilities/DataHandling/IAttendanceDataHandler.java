@@ -19,4 +19,6 @@ public interface IAttendanceDataHandler {
      */
     void editRecord(int ID, List<AttendanceRecord> updatedRecords);
 
+    String[] readEmployeeData(int ID);
+
 }
