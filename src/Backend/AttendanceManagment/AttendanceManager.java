@@ -24,7 +24,7 @@ public class AttendanceManager implements IAttendanceManager {
         employeeID = ID;
         attendanceRecords = new AttendanceFileHandler().getRecords(ID);
         if (attendanceRecords.size() != 0){
-            if (attendanceRecords.get(attendanceRecords.size() - 1) == null){
+            if (attendanceRecords.get(attendanceRecords.size() - 1).getTimeOut() == null){
                 attendanceState = new InState();
             }
         }else{
