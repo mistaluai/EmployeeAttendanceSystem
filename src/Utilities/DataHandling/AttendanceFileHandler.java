@@ -124,48 +124,7 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
         }
     }
 
-    /**
-     * This is a helper method used in readEmployeeData, It
-     * trims the spaces before the data when reading it.
-     * @param employeeData: The array of data after reading it.
-     */
-    private void trim(String[] employeeData){
-        for (int i = 0; i < employeeData.length; i++) {
-            employeeData[i] = employeeData[i].trim();
-        }
-    }
-
-    /**
-     * This method extracts the employee data from the data.csv
-     * file in the data folder and returns an array of string
-     * representing the employee data.
-     * @param ID: The id of the employee.
-     * @return String[] employeeData: The array of the employee data.
-     */
-    @Override
     public String[] readEmployeeData(int ID) {
-        String[] employeeData = new String[6];
-
-        try{
-            FileReader fr = new FileReader(dataPath + "data.csv");
-            BufferedReader reader = new BufferedReader(fr);
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
-                if (Integer.parseInt(data[0]) == ID){
-                    employeeData = data;
-                    trim(employeeData);
-                    break;
-                }
-            }
-
-            reader.close();
-            fr.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return employeeData;
+        return new String[0];
     }
 }
