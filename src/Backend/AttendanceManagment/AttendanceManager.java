@@ -58,22 +58,21 @@ public class AttendanceManager implements IAttendanceManager {
         fileHandler.editRecord(ID, updatedAttendanceRecords);
     }
 
-    public String [][] viewAttendanceHistory() {
-        return superViewAttendanceHistory(employeeID);
+    public void viewAttendanceHistory(String[][] attendanceHistory) {
+        superViewAttendanceHistory(employeeID, attendanceHistory);
     }
 
-    public String [][] superViewAttendanceHistory(int ID) {
+    public void superViewAttendanceHistory(int ID, String[][] attendanceHistory) {
         IAttendanceDataHandler attendanceDataHandler = new AttendanceFileHandler();
         attendanceRecords = attendanceDataHandler.getRecords(ID);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-        String [][] records = new String[attendanceRecords.size()][3];
+        attendanceHistory = new String[attendanceRecords.size()][3];
         for (int i = 0; i < attendanceRecords.size(); i++) {
             AttendanceRecord myRecord = attendanceRecords.get(i);
-            records[i][0] = dateFormat.format(myRecord.getDate());
-            records[i][1] = timeFormat.format(myRecord.getTimeIn());
-            records[i][2] = timeFormat.format(myRecord.getTimeOut());
+            attendanceHistory[i][0] = dateFormat.format(myRecord.getDate());
+            attendanceHistory[i][1] = timeFormat.format(myRecord.getTimeIn());
+            attendanceHistory[i][2] = timeFormat.format(myRecord.getTimeOut());
         }
-        return records;
     }
 }
