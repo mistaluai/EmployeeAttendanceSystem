@@ -10,10 +10,28 @@ import java.awt.event.WindowEvent;
 
 public class SuperViewAttendanceWindow extends JFrame {
 
+    /**
+     * Object of type Supervisor.
+     */
     private Supervisor supervisorProfile;
+    /**
+     * Object of type the SupervisorWindow window to access it.
+     */
     private SupervisorWindow supervisorWindow;
+    /**
+     * Two-dimensional array
+     * The data matrix that will be shown in the table
+     */
     public String[][] attendanceHistory;
-    public SuperViewAttendanceWindow(SupervisorWindow supervisorWindow, Employee supervisorProfile, int ID) {
+
+    /**
+     * Constructor
+     * @param supervisorWindow Object of type Supervisor.
+     * @param supervisorProfile Object of type the SupervisorWindow window.
+     * @param ID Target employee's ID.
+     */
+    public SuperViewAttendanceWindow(SupervisorWindow supervisorWindow,
+                                     Employee supervisorProfile, int ID) {
         //set the supervisor profile to access his data
         this.supervisorProfile = (Supervisor) supervisorProfile;
         //set the profile window to access it if we wanted to go back
@@ -43,7 +61,9 @@ public class SuperViewAttendanceWindow extends JFrame {
 
         //initialize the table using the given data
         JTable attendaceHistoryTable = new JTable(attendanceHistory, titles) {
-            //overriding this method to make sure that all cells are not editable, to make the table read only
+            //overriding this method
+            // to make sure that all cells are not editable,
+            // to make the table read only
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -63,7 +83,8 @@ public class SuperViewAttendanceWindow extends JFrame {
         //show the window
         setVisible(true);
 
-        //add action listener to the window to go back to the supervisor window when this one gets closed
+        //add action listener to the window to go back to the supervisor window
+        // when this one gets closed
         addWindowListener(new WindowAdapter() {
             /**
              * Invoked when a window is being closed.

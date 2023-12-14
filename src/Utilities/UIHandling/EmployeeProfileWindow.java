@@ -12,9 +12,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EmployeeProfileWindow extends JFrame {
+    /**
+     * Object of type Employee.
+     */
     Employee employeeProfile;
+    /**
+     * Object of type the LandingWindow window to access it.
+     */
     LandingWindow landingWindow;
-    public EmployeeProfileWindow(LandingWindow landingWindow, Employee employeeProfile) {
+
+    /**
+     * Constructor
+     * @param landingWindow Object of type the LandingWindow window
+     *                      to access it.
+     * @param employeeProfile  Object of type Employee.
+     */
+    public EmployeeProfileWindow(LandingWindow landingWindow,
+                                 Employee employeeProfile) {
         //set the employee profile to access his data
         this.employeeProfile = employeeProfile;
         //set the landing window to access it if we wanted to go back
@@ -39,13 +53,17 @@ public class EmployeeProfileWindow extends JFrame {
         mainBody.setLayout(mainBodyLayout);
 
 
-        //create and initialize a label that shows the information of the employee
+        //create and initialize a label
+        // that shows the information of the employee
 
         JTextArea employeeInformation = new JTextArea(
-          "Name: " + employeeProfile.getName() +
-          "\nID: " + employeeProfile.getId() +
-          "\nPosition: " + employeeProfile.getPosition() +
-                  "\nDepartment: " + employeeProfile.getDepartment().getDepartmentName(),
+          "Name: " + employeeProfile.getName()
+                  + "\nID: "
+                  + employeeProfile.getId()
+                  + "\nPosition: "
+                  + employeeProfile.getPosition()
+                  + "\nDepartment: "
+                  + employeeProfile.getDepartment().getDepartmentName(),
                 4, 1
         );
 
@@ -65,7 +83,8 @@ public class EmployeeProfileWindow extends JFrame {
         employeeInformation.setBackground(getBackground());
 
 
-        //create a new panel for buttons of the employee profile with grid layout that takes 5 vertical items and one column
+        //create a new panel for buttons of the employee profile with grid layout
+        // that takes 5 vertical items and one column
         GridLayout buttonsLayout = new GridLayout(5, 1);
         JPanel buttons = new JPanel(buttonsLayout);
         buttonsLayout.setVgap(20);
@@ -75,21 +94,24 @@ public class EmployeeProfileWindow extends JFrame {
         JButton markAttendanceButton = new JButton("Mark Attendance");
         markAttendanceButton.setPreferredSize(new Dimension(150, 32));
         markAttendanceButton.setFont(globalFontBold);
-        MarkAttendaceActionListener markAttendaceActionListener = new MarkAttendaceActionListener();
+        MarkAttendaceActionListener markAttendaceActionListener
+                = new MarkAttendaceActionListener();
         markAttendanceButton.addActionListener(markAttendaceActionListener);
 
         //create button for viewing attendance history
         JButton viewAttendanceButton = new JButton("View Attendance History");
         viewAttendanceButton.setPreferredSize(new Dimension(150, 32));
         viewAttendanceButton.setFont(globalFontBold);
-        ViewAttendaceActionListener viewAttendaceActionListener = new ViewAttendaceActionListener();
+        ViewAttendaceActionListener viewAttendaceActionListener
+                = new ViewAttendaceActionListener();
         viewAttendanceButton.addActionListener(viewAttendaceActionListener);
 
         //create button for gaining supervisor privileges
         JButton supervisorModeButton = new JButton("Log in as Supervisor");
         supervisorModeButton.setPreferredSize(new Dimension(150, 32));
         supervisorModeButton.setFont(globalFontBold);
-        SupervisorModeActionListener supervisorModeActionListener = new SupervisorModeActionListener();
+        SupervisorModeActionListener supervisorModeActionListener
+                = new SupervisorModeActionListener();
         supervisorModeButton.addActionListener(supervisorModeActionListener);
 
         //add gap before the buttons
@@ -113,7 +135,8 @@ public class EmployeeProfileWindow extends JFrame {
         //sets the window to be visible
         setVisible(true);
 
-        //add action listener to the window to go back to the landing window when this one gets closed
+        //add action listener to the window to go back to the landing window
+        // when this one gets closed
         addWindowListener(new WindowAdapter() {
             /**
              * Invoked when a window is being closed.
@@ -141,7 +164,9 @@ public class EmployeeProfileWindow extends JFrame {
             Date checkTime = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             String checkTimeString = sdf.format(checkTime);
-            JOptionPane.showMessageDialog(EmployeeProfileWindow.this, state + " successfully \nAt time: " + checkTimeString, "Attendance Checked", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(EmployeeProfileWindow.this
+                    , state + " successfully \nAt time: " + checkTimeString,
+                    "Attendance Checked", JOptionPane.PLAIN_MESSAGE);
 
         }
     }
@@ -154,7 +179,8 @@ public class EmployeeProfileWindow extends JFrame {
          * @param e the event to be processed
          */
         public void actionPerformed(ActionEvent e) {
-            new ViewAttendanceWindow(EmployeeProfileWindow.this, employeeProfile);
+            new ViewAttendanceWindow(EmployeeProfileWindow.this
+                    , employeeProfile);
             EmployeeProfileWindow.this.setVisible(false);
         }
     }
@@ -168,7 +194,9 @@ public class EmployeeProfileWindow extends JFrame {
          */
         public void actionPerformed(ActionEvent e) {
             if (!employeeProfile.isSuperVisor()) {
-                JOptionPane.showMessageDialog(EmployeeProfileWindow.this, "You don't have enough permissions!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(EmployeeProfileWindow.this,
+                        "You don't have enough permissions!",
+                        "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             new SupervisorWindow(EmployeeProfileWindow.this, employeeProfile);

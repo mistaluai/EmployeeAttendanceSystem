@@ -7,11 +7,29 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class ViewAttendanceWindow extends JFrame{
+public class ViewAttendanceWindow extends JFrame {
+
+    /**
+     * Object of type Employee.
+     */
     private Employee employeeProfile;
+    /**
+     * Object of type the EmployeeProfileWindow window to access it.
+     */
     private EmployeeProfileWindow employeeProfileWindow;
+    /**
+     * Two-dimensional array
+     * The data matrix that will be shown in the table
+     */
     public String[][] attendanceHistory;
-    public ViewAttendanceWindow(EmployeeProfileWindow employeeProfileWindow, Employee employeeProfile) {
+
+    /**
+     * Constructor
+     * @param employeeProfileWindow Object of type the EmployeeProfileWindow.
+     * @param employeeProfile Object of type Employee.
+     */
+    public ViewAttendanceWindow(EmployeeProfileWindow employeeProfileWindow,
+                                Employee employeeProfile) {
         //set the employee profile to access his data
         this.employeeProfile = employeeProfile;
         //set the profile window to access it if we wanted to go back
@@ -42,7 +60,9 @@ public class ViewAttendanceWindow extends JFrame{
 
         //initialize the table using the given data
         JTable attendaceHistoryTable = new JTable(attendanceHistory, titles) {
-            //overriding this method to make sure that all cells are not editable, to make the table read only
+            //overriding this method
+            // to make sure that all cells are not editable,
+            // to make the table read only
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;

@@ -14,14 +14,39 @@ import java.util.Date;
 
 public class EditAttendanceWindow extends JFrame {
 
+    /**
+     * Object of type Supervisor.
+     */
     private Supervisor supervisorProfile;
+    /**
+     * Object of type the SupervisorWindow window to access it.
+     */
     private SupervisorWindow supervisorWindow;
+    /**
+     * Target employee's ID.
+     */
     private int ID;
-    JSpinner datePicker;
-    JSpinner timeInPicker;
-    JSpinner timeOutPicker;
+    /**
+     * JSpinner object that will be used to access the date.
+     */
+    private JSpinner datePicker;
+    /**
+     * JSpinner object that will be used to access the time-in.
+     */
+    private JSpinner timeInPicker;
+    /**
+     * JSpinner object that will be used to access the time-out.
+     */
+    private JSpinner timeOutPicker;
 
-    public EditAttendanceWindow(SupervisorWindow supervisorWindow, Supervisor supervisorProfile, int ID) {
+    /**
+     * Constructor
+     * @param supervisorWindow Object of type the SupervisorWindow.
+     * @param supervisorProfile Object of type Supervisor.
+     * @param ID Target employee's ID.
+     */
+    public EditAttendanceWindow(SupervisorWindow supervisorWindow,
+                                Supervisor supervisorProfile, int ID) {
         //set the supervisor profile to access his data
         this.supervisorProfile = (Supervisor) supervisorProfile;
         //set the id of the target employee
@@ -60,12 +85,14 @@ public class EditAttendanceWindow extends JFrame {
 
         //create the date picking field
         //create a date model for the spinner field
-        SpinnerDateModel spinnerDateModel = new SpinnerDateModel(new Date(), null, null, Calendar.MONTH);
+        SpinnerDateModel spinnerDateModel =
+                new SpinnerDateModel(new Date(), null, null, Calendar.MONTH);
         //initialize the date picker
         datePicker = new JSpinner(spinnerDateModel);
         //sets its preferred size
         datePicker.setPreferredSize(new Dimension(128, 32));
-        //create a date editor for formatting the date in the spinner field
+        //create a date editor
+        // for formatting the date in the spinner field
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(datePicker, "dd/MM/yy");
         //set the editor
         datePicker.setEditor(dateEditor);
@@ -87,7 +114,8 @@ public class EditAttendanceWindow extends JFrame {
         //initialize the date picker
         timeInPicker = new JSpinner(spinnerTimeInModel);
         //sets its preferred size
-        timeInPicker.setPreferredSize(new Dimension(128, 32));
+        timeInPicker.setPreferredSize(
+                new Dimension(128, 32));
         //create a date editor for formatting the date in the spinner field
         JSpinner.DateEditor timeInEditor = new JSpinner.DateEditor(timeInPicker, "HH:mm");
         //set the editor
@@ -167,9 +195,11 @@ public class EditAttendanceWindow extends JFrame {
             Date date = (Date) datePicker.getValue();
             Date timeIn = (Date) timeInPicker.getValue();
             Date timeOut = (Date) timeOutPicker.getValue();
-            AttendanceRecord updatedRecord = new AttendanceRecord(date, timeIn, timeOut);
+            AttendanceRecord updatedRecord =
+                    new AttendanceRecord(date, timeIn, timeOut);
             supervisorProfile.editAttendance(ID, updatedRecord);
-            JOptionPane.showMessageDialog(EditAttendanceWindow.this, updatedRecord.toString() , "Edit Done", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(EditAttendanceWindow.this,
+                    updatedRecord.toString() , "Edit Done", JOptionPane.PLAIN_MESSAGE);
         }
     }
 
