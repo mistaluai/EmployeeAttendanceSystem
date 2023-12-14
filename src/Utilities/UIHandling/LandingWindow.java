@@ -9,7 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LandingWindow extends JFrame  {
+    /**
+     * Text field to get the id input in it
+     */
     private JTextField idField;
+
+    /**
+     * Constructor
+     */
     public LandingWindow() {
         //Sets title of the window
         setTitle("Employee Attendance System");
@@ -64,7 +71,8 @@ public class LandingWindow extends JFrame  {
             //makes sure that the text field is not empty
             if (ID.length() == 0) {
                 //show a message that clearly tells the problem
-                JOptionPane.showMessageDialog(LandingWindow.this, "ID can't be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(LandingWindow.this, "ID can't be empty!"
+                        , "Error", JOptionPane.ERROR_MESSAGE);
                 //exit the execution
                 return;
             }
@@ -74,7 +82,9 @@ public class LandingWindow extends JFrame  {
                 idValue = Integer.parseInt(ID);
             } catch (NumberFormatException nfe) {
                 //show a message that clearly tells the problem
-                JOptionPane.showMessageDialog(LandingWindow.this, "ID can only include numbers!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(LandingWindow.this
+                        , "ID can only include numbers!", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 //exit the execution
                 return;
             }
@@ -82,20 +92,19 @@ public class LandingWindow extends JFrame  {
             //Employee employeeAccount = IEmployeeLoader.getEmployee(idValue);
             Employee employeeAccount = new EmployeeLoader().getEmployee(idValue);
             if (employeeAccount == null) {
-                JOptionPane.showMessageDialog(LandingWindow.this, "ID invalid!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(LandingWindow.this
+                        , "ID invalid!", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             //create new profile window
-            EmployeeProfileWindow employeeProfileWindow = new EmployeeProfileWindow(LandingWindow.this, employeeAccount);
+            EmployeeProfileWindow employeeProfileWindow =
+                    new EmployeeProfileWindow(LandingWindow.this, employeeAccount);
 
             //hides current landing window
             LandingWindow.this.setVisible(false);
 
         }
-    }
-
-    public static void main(String[] args) {
-        new LandingWindow();
     }
 }

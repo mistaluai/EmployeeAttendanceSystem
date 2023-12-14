@@ -12,11 +12,27 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class SupervisorWindow extends JFrame {
+
+    /**
+     * Object of type Supervisor.
+     */
     private Supervisor supervisorProfile;
+    /**
+     * Object of type the EmployeeProfileWindow window to access it.
+     */
     private EmployeeProfileWindow employeeProfileWindow;
+    /**
+     * Text field to get the id input in it
+     */
     private JTextField idField;
 
-    public SupervisorWindow(EmployeeProfileWindow employeeProfileWindow, Employee supervisorProfile) {
+    /**
+     * Constructor
+     * @param employeeProfileWindow Object of type the EmployeeProfileWindow.
+     * @param supervisorProfile  Object of type Supervisor.
+     */
+    public SupervisorWindow(EmployeeProfileWindow employeeProfileWindow,
+                            Employee supervisorProfile) {
         //set the supervisor profile to access his data
         this.supervisorProfile = (Supervisor) supervisorProfile;
         //set the profile window to access it if we wanted to go back
@@ -29,7 +45,7 @@ public class SupervisorWindow extends JFrame {
         setMinimumSize(new Dimension(400, 300));
         setMaximumSize(new Dimension(400, 300));
         //set the layout
-        setLayout(new GridLayout(2,1));
+        setLayout(new GridLayout(2, 1));
         //create a global font to be used by the components
         Font globalFontBold = new Font("Lucida Grande", Font.BOLD, 13);
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
@@ -51,19 +67,25 @@ public class SupervisorWindow extends JFrame {
         inputPanel.add(idField);
 
         //create new panel for the buttons
-        JPanel buttons = new JPanel(new GridLayout(5,1));
+        JPanel buttons = new JPanel(new GridLayout(5, 1));
 
         //create button for viewing attendance history of the employee
-        JButton viewAttendanceHistoryButton = new JButton("View attendance History");
+        JButton viewAttendanceHistoryButton =
+                new JButton("View attendance History");
         viewAttendanceHistoryButton.setFont(globalFontBold);
-        ViewAttendanceActionListener viewAttendanceActionListener = new ViewAttendanceActionListener();
-        viewAttendanceHistoryButton.addActionListener(viewAttendanceActionListener);
+        ViewAttendanceActionListener viewAttendanceActionListener
+                = new ViewAttendanceActionListener();
+        viewAttendanceHistoryButton.
+                addActionListener(viewAttendanceActionListener);
 
         //create button for editing attendance history of the employee
-        JButton editAttendanceButton = new JButton("Edit attendance");
+        JButton editAttendanceButton =
+                new JButton("Edit attendance");
         editAttendanceButton.setFont(globalFontBold);
-        EditAttendanceActionListener editAttendanceActionListener = new EditAttendanceActionListener();
-        editAttendanceButton.addActionListener(editAttendanceActionListener);
+        EditAttendanceActionListener editAttendanceActionListener
+                = new EditAttendanceActionListener();
+        editAttendanceButton.
+                addActionListener(editAttendanceActionListener);
 
         //add buttons to their parent panel
         buttons.add(viewAttendanceHistoryButton);
@@ -77,7 +99,8 @@ public class SupervisorWindow extends JFrame {
         //sets the window to be visible
         setVisible(true);
 
-        //add action listener to the window to go back to the landing window when this one gets closed
+        //add action listener to the window to go back
+        // to the landing window when this one gets closed
         addWindowListener(new WindowAdapter() {
             /**
              * Invoked when a window is being closed.
@@ -96,9 +119,10 @@ public class SupervisorWindow extends JFrame {
         //makes sure that the text field is not empty
         if (ID.length() == 0) {
             //show a message that clearly tells the problem
-            JOptionPane.showMessageDialog(SupervisorWindow.this, "ID can't be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(SupervisorWindow.this,
+                    "ID can't be empty!", "Error", JOptionPane.ERROR_MESSAGE);
             //exit the execution
-            return-1;
+            return -1;
         }
         //makes sure that the text field doesn't contain any input but numbers
         try {
@@ -106,13 +130,16 @@ public class SupervisorWindow extends JFrame {
             idValue = Integer.parseInt(ID);
         } catch (NumberFormatException nfe) {
             //show a message that clearly tells the problem
-            JOptionPane.showMessageDialog(SupervisorWindow.this, "ID can only include numbers!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(SupervisorWindow.this,
+                    "ID can only include numbers!", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             //exit the execution
-            return-1;
+            return -1;
         }
         if (new EmployeeLoader().getEmployee(idValue) == null) {
-            JOptionPane.showMessageDialog(SupervisorWindow.this, "ID invalid!", "Error", JOptionPane.ERROR_MESSAGE);
-            return-1;
+            JOptionPane.showMessageDialog(SupervisorWindow.this,
+                    "ID invalid!", "Error", JOptionPane.ERROR_MESSAGE);
+            return -1;
         }
         return idValue;
     }
@@ -127,7 +154,8 @@ public class SupervisorWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             int id = getID();
             if (id != -1) {
-                new SuperViewAttendanceWindow(SupervisorWindow.this, supervisorProfile, id);
+                new SuperViewAttendanceWindow(SupervisorWindow.this,
+                        supervisorProfile, id);
                 SupervisorWindow.this.setVisible(false);
             }
 
@@ -144,12 +172,10 @@ public class SupervisorWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             int id = getID();
             if (id != -1) {
-                new EditAttendanceWindow(SupervisorWindow.this, supervisorProfile, id);
+                new EditAttendanceWindow(SupervisorWindow.this,
+                        supervisorProfile, id);
                 SupervisorWindow.this.setVisible(false);
             }
         }
-    }
-
-    public static void main(String[] args) {
     }
 }
