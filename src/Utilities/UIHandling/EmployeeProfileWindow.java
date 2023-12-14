@@ -40,6 +40,10 @@ public class EmployeeProfileWindow extends JFrame {
         setSize(400, 300);
         setMinimumSize(new Dimension(400, 300));
         setMaximumSize(new Dimension(400, 300));
+
+        //set its position to center the screen
+        setLocationRelativeTo(null);
+
         //set the layout
         //create a global font to be used by the components
         Font globalFontBold = new Font("Lucida Grande", Font.BOLD, 13);
@@ -160,6 +164,7 @@ public class EmployeeProfileWindow extends JFrame {
             //mark the employee attendance
             //employeeProfile.markAttendance();
             //get the employee attendance state
+            employeeProfile.markAttendance();
             String state = "Checked out"; //changes according to the state
             Date checkTime = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
