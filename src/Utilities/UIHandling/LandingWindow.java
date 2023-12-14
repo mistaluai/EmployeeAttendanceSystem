@@ -24,6 +24,10 @@ public class LandingWindow extends JFrame  {
         setSize(400, 100);
         setMinimumSize(new Dimension(400, 100));
         setMaximumSize(new Dimension(400, 100));
+
+        //set its position to center the screen
+        setLocationRelativeTo(null);
+
         //create a global font to be used by the components
         Font globalFont = new Font("Lucida Grande", Font.BOLD, 13);
         //create new panel to add components to it

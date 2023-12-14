@@ -60,6 +60,9 @@ public class EditAttendanceWindow extends JFrame {
         setSize(400, 300);
         setMinimumSize(new Dimension(400, 300));
         setMaximumSize(new Dimension(400, 300));
+
+        //set its position to center the screen
+        setLocationRelativeTo(null);
         //set the layout
         setLayout(new GridLayout(5,1));
 

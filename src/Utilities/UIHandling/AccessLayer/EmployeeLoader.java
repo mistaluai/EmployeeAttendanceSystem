@@ -20,6 +20,7 @@ public class EmployeeLoader implements IEmployeeLoader {
             return new Supervisor(ID);
         } else if (Integer.parseInt(employeeType) == 0) {
             return new Employee(ID);
-        }return null;
+        }
+        return null;
     }
 }
