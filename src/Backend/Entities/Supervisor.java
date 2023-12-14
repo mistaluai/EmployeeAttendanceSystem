@@ -7,10 +7,7 @@ package Backend.Entities;
 import Backend.AttendanceManagment.AttendanceCommands.EditAttendance;
 import Backend.AttendanceManagment.AttendanceCommands.IAttendanceCommand;
 import Backend.AttendanceManagment.AttendanceCommands.SuperViewAttendanceHistory;
-import Backend.AttendanceManagment.AttendanceManager;
 import Backend.AttendanceManagment.AttendanceRecord;
-import Utilities.DataHandling.AttendanceFileHandler;
-import Utilities.DataHandling.IAttendanceDataHandler;
 
 public class Supervisor extends Employee {
 
@@ -33,9 +30,7 @@ public class Supervisor extends Employee {
      * @param updatedRecord The updated attendance record.
      */
     public void editAttendance(int ID, AttendanceRecord updatedRecord) {
-        IAttendanceDataHandler iAttendanceDataHandler = new AttendanceFileHandler();
-        String [] attributes = iAttendanceDataHandler.readEmployeeData(ID);
-        IAttendanceCommand editAttendanceCommand = new EditAttendance(new AttendanceManager(), ID, updatedRecord);
+        IAttendanceCommand editAttendanceCommand = new EditAttendance(getAttendanceManager(), ID, updatedRecord);
         editAttendanceCommand.execute();
     }
 
