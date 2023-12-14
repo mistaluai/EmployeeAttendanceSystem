@@ -127,7 +127,7 @@ public class SupervisorWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             int id = getID();
             if (id != -1) {
-                new SuperViewAttendanceHistoryWindow(SupervisorWindow.this, supervisorProfile, id);
+                new SuperViewAttendanceWindow(SupervisorWindow.this, supervisorProfile, id);
                 SupervisorWindow.this.setVisible(false);
             }
 

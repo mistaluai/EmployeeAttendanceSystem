@@ -8,6 +8,7 @@ import Backend.AttendanceManagment.AttendanceCommands.EditAttendance;
 import Backend.AttendanceManagment.AttendanceCommands.IAttendanceCommand;
 import Backend.AttendanceManagment.AttendanceCommands.SuperViewAttendanceHistory;
 import Backend.AttendanceManagment.AttendanceRecord;
+import Utilities.UIHandling.SuperViewAttendanceWindow;
 
 public class Supervisor extends Employee {
 
@@ -38,8 +39,8 @@ public class Supervisor extends Employee {
      * Method to view attendance history of employees.
      * @param ID The employee ID whose attendance history is to be viewed.
      */
-    public void superViewAttendanceHistory(int ID, String[][] attendanceHistory) {
-        IAttendanceCommand superViewAttendanceHistoryCommand = new SuperViewAttendanceHistory(getAttendanceManager(), ID, attendanceHistory);
+    public void superViewAttendanceHistory(int ID, SuperViewAttendanceWindow window) {
+        IAttendanceCommand superViewAttendanceHistoryCommand = new SuperViewAttendanceHistory(getAttendanceManager(), ID, window);
         superViewAttendanceHistoryCommand.execute();
     }
 }

@@ -8,12 +8,12 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class SuperViewAttendanceHistoryWindow extends JFrame {
+public class SuperViewAttendanceWindow extends JFrame {
 
     private Supervisor supervisorProfile;
     private SupervisorWindow supervisorWindow;
-
-    public SuperViewAttendanceHistoryWindow (SupervisorWindow supervisorWindow, Employee supervisorProfile, int ID) {
+    public String[][] attendanceHistory;
+    public SuperViewAttendanceWindow(SupervisorWindow supervisorWindow, Employee supervisorProfile, int ID) {
         //set the supervisor profile to access his data
         this.supervisorProfile = (Supervisor) supervisorProfile;
         //set the profile window to access it if we wanted to go back
@@ -31,8 +31,7 @@ public class SuperViewAttendanceHistoryWindow extends JFrame {
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
 
         //initialize the data that will be shown
-        String[][] attendanceHistory =  {  {"Default", "Default", "Default"}};
-        this.supervisorProfile.superViewAttendanceHistory(ID, attendanceHistory);
+        this.supervisorProfile.superViewAttendanceHistory(ID, this);
         /*test driver start
         String[][] attendanceHistory = {
                 {"12/12/2023", "11:27:44", "11:27:44"},

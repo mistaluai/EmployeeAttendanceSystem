@@ -5,6 +5,7 @@ import Backend.AttendanceManagment.AttendanceCommands.MarkAttendance;
 import Backend.AttendanceManagment.AttendanceCommands.ViewAttendanceHistory;
 import Backend.AttendanceManagment.AttendanceManager;
 import Utilities.DataHandling.AttendanceFileHandler;
+import Utilities.UIHandling.ViewAttendanceWindow;
 
 /**
      * This class represents an Employee in the company.
@@ -85,8 +86,8 @@ public class Employee {
     /**
      * View the attendance history of the employee.
      */
-    public void viewAttendanceHistory(String[][] attendanceHistory) {
-        IAttendanceCommand viewAttendanceHistoryCommand = new ViewAttendanceHistory(getAttendanceManager(), attendanceHistory);
+    public void viewAttendanceHistory(ViewAttendanceWindow window) {
+        IAttendanceCommand viewAttendanceHistoryCommand = new ViewAttendanceHistory(getAttendanceManager(), window);
         viewAttendanceHistoryCommand.execute();
     }
 }

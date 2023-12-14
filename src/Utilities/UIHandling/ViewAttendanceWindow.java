@@ -7,10 +7,10 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class ViewAttendanceWindow extends JFrame {
+public class ViewAttendanceWindow extends JFrame{
     private Employee employeeProfile;
     private EmployeeProfileWindow employeeProfileWindow;
-
+    public String[][] attendanceHistory;
     public ViewAttendanceWindow(EmployeeProfileWindow employeeProfileWindow, Employee employeeProfile) {
         //set the employee profile to access his data
         this.employeeProfile = employeeProfile;
@@ -30,8 +30,7 @@ public class ViewAttendanceWindow extends JFrame {
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
 
         //initialize the data that will be shown
-        String[][] attendanceHistory = {  {"Default", "Default", "Default"}};
-        employeeProfile.viewAttendanceHistory(attendanceHistory);
+        employeeProfile.viewAttendanceHistory(this);
         /*test driver start
         String[][] attendanceHistory = {
                 {"12/12/2023", "11:27:44", "11:27:44"},
