@@ -30,7 +30,7 @@ public class AttendanceManager implements IAttendanceManager {
      * Checks the last attendance record to determine the current attendance state (In or Out).
      */
     private void checkRecords() {
-        if (!attendanceRecords.isEmpty() && attendanceRecords.getLast().getTimeOut() == null)
+        if (!attendanceRecords.isEmpty() && attendanceRecords.get(attendanceRecords.size() - 1).getTimeOut() == null)
             attendanceState = new InState();
         else
             attendanceState = new OutState();

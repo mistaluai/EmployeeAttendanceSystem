@@ -1,6 +1,9 @@
 package Backend.AttendanceManagment;
 
+import DTO.DTO;
+
 public interface IAttendanceManager {
+
     /**
      * stores the attendance record entity based on the state of the employee's attendance
      */
@@ -16,11 +19,12 @@ public interface IAttendanceManager {
     /**
      * views the attendance history of the employee
      */
-    void viewAttendanceHistory(String[][] attendanceHistory);
+    void viewAttendanceHistory(DTO records);
 
     /**
      * views the attendance history of another employee
      * @param ID: Target employee's ID
      */
-    void superViewAttendanceHistory(int ID, String[][] attendanceHistory);
+    void superViewAttendanceHistory(int ID, DTO records);
+
 }
