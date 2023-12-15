@@ -5,25 +5,27 @@ import Utilities.UIHandling.ViewAttendanceWindow;
 
 public interface IAttendanceManager {
     /**
-     * stores the attendance record entity based on the state of the employee's attendance
+     * Stores the attendance record entity based on the state of the employee's attendance.
      */
     void markAttendance();
 
     /**
-     * updates an existing attendance record of an employee
-     * @param ID: Target employee's ID
-     * @param updatedRecord:  the updated record to replace the old record
+     * updates an existing attendance record of an employee.
+     *
+     * @param ID              Target employee's ID.
+     * @param updatedRecord   The updated record to replace the old record.
      */
     void editAttendance(int ID, AttendanceRecord updatedRecord);
 
     /**
-     * views the attendance history of the employee
+     * Views the attendance history of the employee.
      */
     void viewAttendanceHistory(ViewAttendanceWindow window);
 
     /**
-     * views the attendance history of another employee
-     * @param ID: Target employee's ID
+     * Views the attendance history of another employee
+     *
+     * @param ID   Target employee's ID.
      */
     void superViewAttendanceHistory(int ID, SuperViewAttendanceWindow window);
 }
