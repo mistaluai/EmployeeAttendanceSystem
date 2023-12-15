@@ -27,9 +27,12 @@ public class DTO {
 
         for (int i = 0; i < attendanceRecords.size(); i++) {
             AttendanceRecord myRecord = attendanceRecords.get(i);
-            attendanceHistory[i][0] = dateFormat.format(myRecord.getDate());
-            attendanceHistory[i][1] = timeFormat.format(myRecord.getTimeIn());
-            attendanceHistory[i][2] = timeFormat.format(myRecord.getTimeOut());
+            if (myRecord.getDate() != null)
+                attendanceHistory[i][0] = dateFormat.format(myRecord.getDate());
+            if (myRecord.getTimeIn() != null)
+                attendanceHistory[i][1] = timeFormat.format(myRecord.getTimeIn());
+            if (myRecord.getTimeOut() != null)
+                attendanceHistory[i][2] = timeFormat.format(myRecord.getTimeOut());
         }
 
         return attendanceHistory;
