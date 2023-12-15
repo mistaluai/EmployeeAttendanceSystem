@@ -94,8 +94,11 @@ public class LandingWindow extends JFrame  {
             }
             //load the employee's data using the loader provided by the back end
             //Employee employeeAccount = IEmployeeLoader.getEmployee(idValue);
-            Employee employeeAccount = new EmployeeLoader().getEmployee(idValue);
-            if (employeeAccount == null) {
+            Employee employeeAccount;
+            try{
+                employeeAccount = new EmployeeLoader().getEmployee(idValue);
+                // This exception is thrown when the employeeloader
+            }catch (NumberFormatException i){
                 JOptionPane.showMessageDialog(LandingWindow.this
                         , "ID invalid!", "Error",
                         JOptionPane.ERROR_MESSAGE);
