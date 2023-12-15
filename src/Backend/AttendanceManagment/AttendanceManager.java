@@ -124,4 +124,14 @@ public class AttendanceManager implements IAttendanceManager {
         records.setAttendanceRecords(attendanceRecords);
     }
 
+    /**
+     * Returns the attendance state of the employee
+     * @return true if the employee was out of the company, false if he was in the company
+     */
+    public boolean getState() {
+        if (attendanceState instanceof InState)
+            return false;
+        return true;
+    }
+
 }
