@@ -3,6 +3,7 @@ package Backend.AttendanceManagment;
 import DTO.DTO;
 
 public interface IAttendanceManager {
+
     /**
      * stores the attendance record entity based on the state of the employee's attendance
      */
@@ -25,4 +26,5 @@ public interface IAttendanceManager {
      * @param ID: Target employee's ID
      */
     void superViewAttendanceHistory(int ID, DTO records);
+
 }
