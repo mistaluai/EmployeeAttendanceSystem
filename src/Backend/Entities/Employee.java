@@ -8,15 +8,17 @@ import Utilities.DataHandling.AttendanceFileHandler;
 import DTO.DTO;
 
 /**
-     * This class represents an Employee in the company.
-     */
+* This class represents an Employee in the company.
+*/
 public class Employee {
+
     // Employee attributes
     private final String name;
     private final String position;
     private final int id;
     private final Department department;
     private final AttendanceManager attendanceManager;
+    protected IAttendanceCommand command;
 
     public Employee(int id) {
         this.id = id;
@@ -31,7 +33,7 @@ public class Employee {
         return false;
     }
 
-        /**
+     /**
      * Get the name of the employee.
      * @return The name of the employee.
      */
@@ -55,7 +57,6 @@ public class Employee {
         return id;
     }
 
-
     /**
      * Get the department the employee belongs to.
      * @return The department of the employee.
@@ -63,7 +64,6 @@ public class Employee {
     public Department getDepartment() {
         return department;
     }
-
 
     /**
      * Get the attendance manager for the employee.
@@ -73,21 +73,22 @@ public class Employee {
         return attendanceManager;
     }
 
+    public void setCommand(IAttendanceCommand command) {
+        this.command = command;
+    }
 
     /**
      * Mark the attendance for the employee.
      */
     public void markAttendance() {
-        IAttendanceCommand markAttendanceCommand = new MarkAttendance(getAttendanceManager());
-        markAttendanceCommand.execute();
+        setCommand(new MarkAttendance(attendanceManager));
+        command.execute();
     }
-
 
     /**
      * View the attendance history of the employee.
      */
     public void viewAttendanceHistory(DTO records) {
-        IAttendanceCommand viewAttendanceHistoryCommand = new ViewAttendanceHistory(getAttendanceManager(), records);
-        viewAttendanceHistoryCommand.execute();
-    }
+        setCommand(new ViewAttendanceHistory(getAttendanceManager(), records));
+        command.execute();
 }

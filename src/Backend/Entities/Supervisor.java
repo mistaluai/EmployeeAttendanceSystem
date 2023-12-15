@@ -5,7 +5,6 @@
 package Backend.Entities;
 
 import Backend.AttendanceManagment.AttendanceCommands.EditAttendance;
-import Backend.AttendanceManagment.AttendanceCommands.IAttendanceCommand;
 import Backend.AttendanceManagment.AttendanceCommands.SuperViewAttendanceHistory;
 import Backend.AttendanceManagment.AttendanceRecord;
 import DTO.DTO;
@@ -31,8 +30,8 @@ public class Supervisor extends Employee {
      * @param updatedRecord The updated attendance record.
      */
     public void editAttendance(int ID, AttendanceRecord updatedRecord) {
-        IAttendanceCommand editAttendanceCommand = new EditAttendance(getAttendanceManager(), ID, updatedRecord);
-        editAttendanceCommand.execute();
+        setCommand(new EditAttendance(getAttendanceManager(), ID, updatedRecord));
+        command.execute();
     }
 
     /**
@@ -40,7 +39,8 @@ public class Supervisor extends Employee {
      * @param ID The employee ID whose attendance history is to be viewed.
      */
     public void superViewAttendanceHistory(int ID, DTO records) {
-        IAttendanceCommand superViewAttendanceHistoryCommand = new SuperViewAttendanceHistory(getAttendanceManager(), ID, records);
-        superViewAttendanceHistoryCommand.execute();
+        setCommand(new SuperViewAttendanceHistory(getAttendanceManager(), ID, records));
+        command.execute();
     }
+
 }
