@@ -1,5 +1,6 @@
 package Backend.AttendanceManagment;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AttendanceRecord {
@@ -44,5 +45,14 @@ public class AttendanceRecord {
 
     public Date getTimeOut() {
         return timeOut;
+    }
+
+    public String toString() {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
+        return "Date: " + dateFormatter.format(date)  +
+                "\nTime in: " + timeFormatter.format(timeIn) +
+                "\nTime out: " + timeFormatter.format(timeOut);
+
     }
 }

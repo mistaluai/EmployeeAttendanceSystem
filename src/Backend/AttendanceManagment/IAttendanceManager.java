@@ -1,5 +1,8 @@
 package Backend.AttendanceManagment;
 
+import Utilities.UIHandling.SuperViewAttendanceWindow;
+import Utilities.UIHandling.ViewAttendanceWindow;
+
 public interface IAttendanceManager {
     /**
      * stores the attendance record entity based on the state of the employee's attendance
@@ -16,11 +19,11 @@ public interface IAttendanceManager {
     /**
      * views the attendance history of the employee
      */
-    void viewAttendanceHistory();
+    void viewAttendanceHistory(ViewAttendanceWindow window);
 
     /**
      * views the attendance history of another employee
      * @param ID: Target employee's ID
      */
-    void superViewAttendanceHistory(int ID);
+    void superViewAttendanceHistory(int ID, SuperViewAttendanceWindow window);
 }
