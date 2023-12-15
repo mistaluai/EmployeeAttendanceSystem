@@ -67,7 +67,7 @@ public class EmployeeProfileWindow extends JFrame {
                   + "\nPosition: "
                   + employeeProfile.getPosition()
                   + "\nDepartment: "
-                  + employeeProfile.getDepartment().getDepartmentName(),
+                  + employeeProfile.getDepartment().departmentName(),
                 4, 1
         );
 

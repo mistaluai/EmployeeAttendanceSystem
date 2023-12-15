@@ -1,14 +1,13 @@
 package Utilities.DataHandling;
 
 import Backend.AttendanceManagment.AttendanceRecord;
+import Utilities.Logging.Logger;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -73,8 +72,9 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
 
             reader.close();
             fr.close();
+
         } catch (Exception e) {
-            e.printStackTrace();
+            new Logger().writeError(Arrays.toString(e.getStackTrace()));
         }
         return temp;
     }
