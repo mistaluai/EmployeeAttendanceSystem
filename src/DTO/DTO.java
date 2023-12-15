@@ -20,7 +20,18 @@ public class DTO {
         this.attendanceRecords = attendanceRecords;
     }
 
+    /**
+     * This method is used to return a 2D array of
+     * the attendance records to be used in the front end tables.
+     * It returns not found if there is no records.
+     * @return: 2D array of the data
+     */
     public String[][] getAttendanceRecordsArray() {
+        // If the list is empty return not found array.
+        if (attendanceRecords.isEmpty()){
+            return new String[][]{{"Not Found","Not Found","Not Found",}};
+        }
+
         String[][] attendanceHistory = new String[attendanceRecords.size()][3];
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
