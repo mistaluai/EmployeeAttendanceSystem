@@ -23,18 +23,19 @@ public class Employee {
     public Employee(int id) {
         this.id = id;
         attendanceManager = new AttendanceManager(id);
-        String [] attributes = new AttendanceFileHandler().readEmployeeData(id);
+        String[] attributes = new AttendanceFileHandler().readEmployeeData(id);
         this.name = attributes[1];
         this.position = attributes[2];
         this.department = new Department(attributes[3], attributes[4]);
     }
 
-    public boolean isSuperVisor(){
+    public boolean isSuperVisor() {
         return false;
     }
 
-     /**
+    /**
      * Get the name of the employee.
+     *
      * @return The name of the employee.
      */
     public String getName() {
@@ -43,6 +44,7 @@ public class Employee {
 
     /**
      * Get the position/title of the employee.
+     *
      * @return The position of the employee.
      */
     public String getPosition() {
@@ -51,6 +53,7 @@ public class Employee {
 
     /**
      * Get the unique identifier of the employee.
+     *
      * @return The ID of the employee.
      */
     public int getId() {
@@ -59,6 +62,7 @@ public class Employee {
 
     /**
      * Get the department the employee belongs to.
+     *
      * @return The department of the employee.
      */
     public Department getDepartment() {
@@ -67,6 +71,7 @@ public class Employee {
 
     /**
      * Get the attendance manager for the employee.
+     *
      * @return The attendance manager object.
      */
     public AttendanceManager getAttendanceManager() {
@@ -91,4 +96,5 @@ public class Employee {
     public void viewAttendanceHistory(DTO records) {
         setCommand(new ViewAttendanceHistory(getAttendanceManager(), records));
         command.execute();
+    }
 }
