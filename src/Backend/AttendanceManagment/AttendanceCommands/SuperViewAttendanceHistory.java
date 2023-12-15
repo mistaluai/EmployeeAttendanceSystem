@@ -1,20 +1,21 @@
 package Backend.AttendanceManagment.AttendanceCommands;
 
 import Backend.AttendanceManagment.IAttendanceManager;
+import Utilities.UIHandling.SuperViewAttendanceWindow;
 
 public class SuperViewAttendanceHistory implements IAttendanceCommand {
     IAttendanceManager attendanceManager;
-    String[][] attendanceHistory;
+    SuperViewAttendanceWindow window;
     int ID;
-    public SuperViewAttendanceHistory(IAttendanceManager attendanceManager, int ID, String[][] attendanceHistory) {
+    public SuperViewAttendanceHistory(IAttendanceManager attendanceManager, int ID, SuperViewAttendanceWindow window) {
         this.attendanceManager = attendanceManager;
         this.ID = ID;
-        this.attendanceHistory = attendanceHistory;
+        this.window = window;
     }
 
     @Override
     public void execute() {
-        attendanceManager.superViewAttendanceHistory(ID, attendanceHistory);
+        attendanceManager.superViewAttendanceHistory(ID, window);
     }
 
 }
