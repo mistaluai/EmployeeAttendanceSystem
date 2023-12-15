@@ -1,17 +1,17 @@
 package Backend.AttendanceManagment.AttendanceCommands;
 
 import Backend.AttendanceManagment.IAttendanceManager;
-import Utilities.UIHandling.ViewAttendanceWindow;
+import DTO.DTO;
 
 public class ViewAttendanceHistory implements IAttendanceCommand {
     IAttendanceManager attendanceManager;
-    ViewAttendanceWindow window;
-    public ViewAttendanceHistory(IAttendanceManager attendanceManager, ViewAttendanceWindow window) {
+    DTO records;
+    public ViewAttendanceHistory(IAttendanceManager attendanceManager, DTO records) {
         this.attendanceManager = attendanceManager;
-        this.window = window;
+        this.records = records;
     }
 
     public void execute() {
-        attendanceManager.viewAttendanceHistory(window);
+        attendanceManager.viewAttendanceHistory(records);
     }
 }

@@ -5,8 +5,7 @@ import Backend.AttendanceManagment.AttendanceStates.InState;
 import Backend.AttendanceManagment.AttendanceStates.OutState;
 import Utilities.DataHandling.AttendanceFileHandler;
 import Utilities.DataHandling.IAttendanceDataHandler;
-import Utilities.UIHandling.SuperViewAttendanceWindow;
-import Utilities.UIHandling.ViewAttendanceWindow;
+import DTO.DTO;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -23,7 +22,7 @@ public class AttendanceManager implements IAttendanceManager {
 
     /**
      * The constructor uses the ID to get the read the records
-     * and checks the if the state in or out.
+     * and checks if the state in or out.
      * @param ID
      */
     public AttendanceManager(int ID) {
@@ -60,37 +59,14 @@ public class AttendanceManager implements IAttendanceManager {
         fileHandler.editRecord(ID, updatedAttendanceRecords);
     }
 
-    public void viewAttendanceHistory(ViewAttendanceWindow window) {
-        IAttendanceDataHandler attendanceDataHandler = new AttendanceFileHandler();
-        attendanceRecords = attendanceDataHandler.getRecords(employeeID);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-        window.attendanceHistory = new String[attendanceRecords.size()][3];
-        if (attendanceRecords.size() == 0)
-            window.attendanceHistory = new String[][] {{"Not Found", "Not Found", "Not Found"}};
-        else
-            for (int i = 0; i < attendanceRecords.size(); i++) {
-                AttendanceRecord myRecord = attendanceRecords.get(i);
-                window.attendanceHistory[i][0] = dateFormat.format(myRecord.getDate());
-                window.attendanceHistory[i][1] = timeFormat.format(myRecord.getTimeIn());
-                window.attendanceHistory[i][2] = timeFormat.format(myRecord.getTimeOut());
-            }
+    public void viewAttendanceHistory(DTO records) {
+        superViewAttendanceHistory(employeeID, records);
     }
 
-    public void superViewAttendanceHistory(int ID, SuperViewAttendanceWindow window) {
+    public void superViewAttendanceHistory(int ID, DTO records) {
         IAttendanceDataHandler attendanceDataHandler = new AttendanceFileHandler();
         attendanceRecords = attendanceDataHandler.getRecords(ID);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-        window.attendanceHistory = new String[attendanceRecords.size()][3];
-        if (attendanceRecords.size() == 0)
-            window.attendanceHistory = new String[][] {{"Not Found", "Not Found", "Not Found"}};
-        else
-            for (int i = 0; i < attendanceRecords.size(); i++) {
-                AttendanceRecord myRecord = attendanceRecords.get(i);
-                window.attendanceHistory[i][0] = dateFormat.format(myRecord.getDate());
-                window.attendanceHistory[i][1] = timeFormat.format(myRecord.getTimeIn());
-                window.attendanceHistory[i][2] = timeFormat.format(myRecord.getTimeOut());
-            }
+
+        records.setAttendanceRecords(attendanceRecords);
     }
 }

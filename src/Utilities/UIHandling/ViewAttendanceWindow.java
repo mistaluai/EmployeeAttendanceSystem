@@ -1,6 +1,7 @@
 package Utilities.UIHandling;
 
 import Backend.Entities.Employee;
+import DTO.DTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,8 +51,15 @@ public class ViewAttendanceWindow extends JFrame {
         Font globalFontBold = new Font("Lucida Grande", Font.BOLD, 13);
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
 
+        // Using the DTO
+        DTO records = new DTO(null);
+
         //initialize the data that will be shown
-        employeeProfile.viewAttendanceHistory(this);
+        employeeProfile.viewAttendanceHistory(records);
+
+        //Getting the 2D array for the table
+        String[][] attendanceHistory = records.getAttendanceRecordsArray();
+
         /*test driver start
         String[][] attendanceHistory = {
                 {"12/12/2023", "11:27:44", "11:27:44"},
