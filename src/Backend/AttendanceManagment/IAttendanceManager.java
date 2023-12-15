@@ -1,7 +1,6 @@
 package Backend.AttendanceManagment;
 
-import Utilities.UIHandling.SuperViewAttendanceWindow;
-import Utilities.UIHandling.ViewAttendanceWindow;
+import DTO.DTO;
 
 public interface IAttendanceManager {
     /**
@@ -19,11 +18,11 @@ public interface IAttendanceManager {
     /**
      * views the attendance history of the employee
      */
-    void viewAttendanceHistory(ViewAttendanceWindow window);
+    void viewAttendanceHistory(DTO records);
 
     /**
      * views the attendance history of another employee
      * @param ID: Target employee's ID
      */
-    void superViewAttendanceHistory(int ID, SuperViewAttendanceWindow window);
+    void superViewAttendanceHistory(int ID, DTO records);
 }

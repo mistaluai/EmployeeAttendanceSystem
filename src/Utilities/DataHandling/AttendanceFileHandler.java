@@ -2,10 +2,7 @@ package Utilities.DataHandling;
 
 import Backend.AttendanceManagment.AttendanceRecord;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,6 +52,7 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
     /**
      * This method reads the CSV file from the data folder,
      * Then parses the data and stores it in a list and returns it.
+     * Returns null when the file is not found.
      * @param ID: Target employee ID
      * @return List<AttendanceRecord>: A list of attendance records
      */
@@ -73,6 +71,9 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
 
             reader.close();
             fr.close();
+        // returns null when the file is not found.
+        } catch (FileNotFoundException e) {
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
         }

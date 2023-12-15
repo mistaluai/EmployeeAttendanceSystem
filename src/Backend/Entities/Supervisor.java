@@ -7,7 +7,7 @@ package Backend.Entities;
 import Backend.AttendanceManagment.AttendanceCommands.EditAttendance;
 import Backend.AttendanceManagment.AttendanceCommands.SuperViewAttendanceHistory;
 import Backend.AttendanceManagment.AttendanceRecord;
-import Utilities.UIHandling.SuperViewAttendanceWindow;
+import DTO.DTO;
 
 public class Supervisor extends Employee {
 
@@ -38,8 +38,8 @@ public class Supervisor extends Employee {
      * Method to view attendance history of employees.
      * @param ID The employee ID whose attendance history is to be viewed.
      */
-    public void superViewAttendanceHistory(int ID, SuperViewAttendanceWindow window) {
-        setCommand(new SuperViewAttendanceHistory(getAttendanceManager(), ID, window));
+    public void superViewAttendanceHistory(int ID, DTO records) {
+        setCommand(new SuperViewAttendanceHistory(getAttendanceManager(), ID, records));
         command.execute();
     }
 
