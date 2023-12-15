@@ -2,6 +2,7 @@ package Utilities.UIHandling;
 
 import Backend.Entities.Employee;
 import Backend.Entities.Supervisor;
+import DTO.DTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,8 +52,15 @@ public class SuperViewAttendanceWindow extends JFrame {
         Font globalFontBold = new Font("Lucida Grande", Font.BOLD, 13);
         Font globalFont = new Font("Lucida Grande", Font.PLAIN, 13);
 
+        // Using the DTO
+        DTO records = new DTO(null);
+
         //initialize the data that will be shown
-        this.supervisorProfile.superViewAttendanceHistory(ID, this);
+        this.supervisorProfile.superViewAttendanceHistory(ID, records);
+
+        //Getting the 2D array for the table
+        String[][] attendanceHistory = records.getAttendanceRecordsArray();
+
         /*test driver start
         String[][] attendanceHistory = {
                 {"12/12/2023", "11:27:44", "11:27:44"},
