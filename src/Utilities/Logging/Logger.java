@@ -22,7 +22,7 @@ public class Logger implements ILogger{
         try {
             FileWriter fw = new FileWriter("Logs.log", true);
 
-            fw.write("On " + SDF.format(date.getTime()) + ": " + log + '\n');
+            fw.write(SDF.format(date.getTime()) + ": " + log + '\n');
 
             fw.close();
 
@@ -44,7 +44,7 @@ public class Logger implements ILogger{
             FileWriter fw = new FileWriter("Logs.log", true);
 
             fw.write('\n' + "-------------------------------------------------------------------------------------------------------------------" + '\n');
-            fw.write("On " + SDF.format(date.getTime()) + ": The program failed to preform an action with The Error:" + '\n' + stackTrace  + '\n');
+            fw.write(SDF.format(date.getTime()) + ": The program failed to preform an action with The Error:" + '\n' + stackTrace  + '\n');
             fw.write("-------------------------------------------------------------------------------------------------------------------" + '\n' + '\n');
 
 
