@@ -49,6 +49,14 @@ public class AttendanceManager implements IAttendanceManager {
     }
 
     /**
+     * Returns the attendance state of the employee
+     * @return true if the employee was out of the company, false if he was in the company
+     */
+    public boolean getState() {
+        return !(attendanceState instanceof InState);
+    }
+
+    /**
      * Marks attendance for the employee, updating the attendance records based on the current state,
      * and persists the changes by editing the records through an AttendanceFileHandler.
      * This method is typically called when an employee either clocks in or clocks out.
@@ -147,17 +155,6 @@ public class AttendanceManager implements IAttendanceManager {
             Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
     }
-
-    /**
-     * Returns the attendance state of the employee
-     * @return true if the employee was out of the company, false if he was in the company
-     */
-    public boolean getState() {
-        if (attendanceState instanceof InState)
-            return false;
-        return true;
-    }
-
     /**
      * Adding an ID getter to be used for logging mark attendance.
      * @return ID
