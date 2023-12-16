@@ -3,10 +3,13 @@ package Backend.AttendanceManagment;
 import Backend.AttendanceManagment.AttendanceStates.IAttendanceState;
 import Backend.AttendanceManagment.AttendanceStates.InState;
 import Backend.AttendanceManagment.AttendanceStates.OutState;
+import DTO.DTO;
 import Utilities.DataHandling.AttendanceFileHandler;
 import Utilities.DataHandling.IAttendanceDataHandler;
-import DTO.DTO;
+import Utilities.Logging.Logger;
+
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 
 public class AttendanceManager implements IAttendanceManager {
@@ -78,28 +81,39 @@ public class AttendanceManager implements IAttendanceManager {
      * @param updatedRecord    The updated attendance record.
      */
     public void editAttendance(int ID, AttendanceRecord updatedRecord) {
-        // Create an instance of AttendanceFileHandler to handle file operations.
-        AttendanceFileHandler fileHandler = new AttendanceFileHandler();
+        // Using try catch for Logging
+        try{
 
-        // Retrieve the existing attendance records for the specified employee ID.
-        List<AttendanceRecord> updatedAttendanceRecords = fileHandler.getRecords(ID);
+            // Create an instance of AttendanceFileHandler to handle file operations.
+            AttendanceFileHandler fileHandler = new AttendanceFileHandler();
 
-        // Format the date of the updated record to match the format used in the existing records.
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String updatedDate = formatter.format(updatedRecord.getDate());
+            // Retrieve the existing attendance records for the specified employee ID.
+            List<AttendanceRecord> updatedAttendanceRecords = fileHandler.getRecords(ID);
 
-        // Iterate through the existing records to find and replace the record with the same date as the updated record.
-        String existedDate;
-        for (int i = 0; i < updatedAttendanceRecords.size(); i++) {
-            existedDate = formatter.format(updatedAttendanceRecords.get(i).getDate());
-            if (updatedDate.equals(existedDate)) {
-                updatedAttendanceRecords.set(i, updatedRecord);
-                break;
+            // Format the date of the updated record to match the format used in the existing records.
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String updatedDate = formatter.format(updatedRecord.getDate());
+
+            // Iterate through the existing records to find and replace the record with the same date as the updated record.
+            String existedDate;
+            for (int i = 0; i < updatedAttendanceRecords.size(); i++) {
+                existedDate = formatter.format(updatedAttendanceRecords.get(i).getDate());
+                if (updatedDate.equals(existedDate)) {
+                    updatedAttendanceRecords.set(i, updatedRecord);
+                    break;
+                }
             }
-        }
 
-        // Persist the changes by editing the attendance records through an AttendanceFileHandler.
-        fileHandler.editRecord(ID, updatedAttendanceRecords);
+            // Persist the changes by editing the attendance records through an AttendanceFileHandler.
+            fileHandler.editRecord(ID, updatedAttendanceRecords);
+
+            // Writing logs
+            Logger.writeLog("Supervisor ID " + employeeID + " edited the attendance records of employee ID " + ID);
+
+        }catch (Exception e){
+            // Logging the errors
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
+        }
     }
 
     /**
@@ -122,14 +136,30 @@ public class AttendanceManager implements IAttendanceManager {
      * @param records The DTO (Data Transfer Object) to store the retrieved attendance records.
      */
     public void superViewAttendanceHistory(int ID, DTO records) {
-        // Create an instance of IAttendanceDataHandler to handle data retrieval.
-        IAttendanceDataHandler attendanceDataHandler = new AttendanceFileHandler();
+        // Using try catch for Logging
+        try{
+            // Create an instance of IAttendanceDataHandler to handle data retrieval.
+            IAttendanceDataHandler attendanceDataHandler = new AttendanceFileHandler();
 
-        // Retrieve the attendance records for the specified employee ID.
-        attendanceRecords = attendanceDataHandler.getRecords(ID);
+            // Retrieve the attendance records for the specified employee ID.
+            attendanceRecords = attendanceDataHandler.getRecords(ID);
 
-        // Set the retrieved attendance records in the provided DTO.
-        records.setAttendanceRecords(attendanceRecords);
+            // Set the retrieved attendance records in the provided DTO.
+            records.setAttendanceRecords(attendanceRecords);
+
+            // Writing logs
+            Logger.writeLog("Viewing the records of the employee ID " + employeeID);
+
+        }catch (Exception e){
+            // Logging the errors
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
+        }
     }
-
+    /**
+     * Adding an ID getter to be used for logging mark attendance.
+     * @return ID
+     */
+    public int getEmployeeID() {
+        return employeeID;
+    }
 }
