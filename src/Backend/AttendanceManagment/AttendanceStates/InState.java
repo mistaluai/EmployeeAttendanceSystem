@@ -29,11 +29,11 @@ public class InState implements IAttendanceState{
             attendanceManager.setAttendanceState(new OutState());
 
             // Writing logs
-            new Logger().writeLog("Employee ID " + attendanceManager.getEmployeeID() + " checked out.");
+            Logger.writeLog("Employee ID " + attendanceManager.getEmployeeID() + " checked out.");
 
         }catch (Exception e){
             // Logging the errors
-            new Logger().writeError(Arrays.toString(e.getStackTrace()));
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
 
     }

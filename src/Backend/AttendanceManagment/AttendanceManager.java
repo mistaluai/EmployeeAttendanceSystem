@@ -100,11 +100,11 @@ public class AttendanceManager implements IAttendanceManager {
             fileHandler.editRecord(ID, updatedAttendanceRecords);
 
             // Writing logs
-            new Logger().writeLog("Supervisor ID " + employeeID + " edited the attendance records of employee ID " + ID);
+            Logger.writeLog("Supervisor ID " + employeeID + " edited the attendance records of employee ID " + ID);
 
         }catch (Exception e){
             // Logging the errors
-            new Logger().writeError(Arrays.toString(e.getStackTrace()));
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -140,11 +140,11 @@ public class AttendanceManager implements IAttendanceManager {
             records.setAttendanceRecords(attendanceRecords);
 
             // Writing logs
-            new Logger().writeLog("Viewing the records of the employee ID " + employeeID);
+            Logger.writeLog("Viewing the records of the employee ID " + employeeID);
 
         }catch (Exception e){
             // Logging the errors
-            new Logger().writeError(Arrays.toString(e.getStackTrace()));
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
     }
 
