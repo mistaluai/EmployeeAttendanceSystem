@@ -165,7 +165,12 @@ public class EmployeeProfileWindow extends JFrame {
             //employeeProfile.markAttendance();
             //get the employee attendance state
             employeeProfile.markAttendance();
-            String state = "Checked out"; //changes according to the state
+            String state; //changes according to the state
+            if (employeeProfile.getAttendanceManager().getState())
+                state = "Checked out";
+            else
+                state = "Checked in";
+
             Date checkTime = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             String checkTimeString = sdf.format(checkTime);
