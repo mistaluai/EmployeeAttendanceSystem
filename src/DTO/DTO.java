@@ -21,10 +21,9 @@ public class DTO {
     }
 
     /**
-     * This method is used to return a 2D array of
-     * the attendance records to be used in the front end tables.
-     * It returns not found if there is no records.
-     * @return: 2D array of the data
+     * Retrieves a 2D array of formatted attendance records for use in front-end tables.
+     * Returns a "Not Found" array if no records are present.
+     * @return A 2D array containing formatted attendance data.
      */
     public String[][] getAttendanceRecordsArray() {
         // If the list is empty return not found array.

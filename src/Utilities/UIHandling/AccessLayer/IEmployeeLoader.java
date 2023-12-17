@@ -6,7 +6,7 @@ public interface IEmployeeLoader {
     /**
      * returns Employee object with its ID
      * @param ID: target employee's ID
-     * @return
+     * @return The employee object
      */
     Employee getEmployee(int ID);
 

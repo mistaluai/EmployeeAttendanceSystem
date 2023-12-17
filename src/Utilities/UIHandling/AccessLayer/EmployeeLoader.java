@@ -11,7 +11,7 @@ public class EmployeeLoader implements IEmployeeLoader {
      * based on the employee's data.
      * returns null if the ID wasn't found.
      * @param ID: target employee's ID
-     * @return: The object
+     * @return The object
      */
     @Override
     public Employee getEmployee(int ID) {
