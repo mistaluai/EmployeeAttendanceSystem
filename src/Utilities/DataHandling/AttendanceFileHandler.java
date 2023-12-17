@@ -22,7 +22,7 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
      * an attendance object.
      * If it reads "-1" it sets the dates to null
      * @param attendanceRecord: String that contains the data
-     * @return: AttendanceRecord Object
+     * @return AttendanceRecord Object
      */
     private AttendanceRecord parse(String attendanceRecord) {
         String[] dates = attendanceRecord.split(",");
@@ -33,19 +33,19 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
             if (!dates[0].trim().equals("-1")){
                 date = SDF.parse(dates[0].trim());}
         } catch (ParseException e) {
-            e.printStackTrace();
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
         try {
             if (!dates[1].trim().equals("-1")){
                 timeIn = SDF.parse(dates[1].trim());}
         } catch (ParseException e) {
-            e.printStackTrace();
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
         try {
             if (!dates[2].trim().equals("-1")){
                 timeOut = SDF.parse(dates[2].trim());}
         } catch (ParseException e) {
-            e.printStackTrace();
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
 
         return new AttendanceRecord(date, timeIn, timeOut);
@@ -55,7 +55,7 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
      * This method reads the CSV file from the data folder,
      * Then parses the data and stores it in a list and returns it.
      * @param ID: Target employee ID
-     * @return List<AttendanceRecord>: A list of attendance records
+     * @return List<AttendanceRecord> A list of attendance records
      */
     @Override
     public List<AttendanceRecord> getRecords(int ID) {
@@ -74,7 +74,7 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
             fr.close();
 
         } catch (Exception e) {
-            new Logger().writeError(Arrays.toString(e.getStackTrace()));
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
         return temp;
     }
@@ -85,7 +85,7 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
      * a string to be stored in the CSV file.
      * If the date is null it's recorded as "-1"
      * @param record: An attendance record object.
-     * @return: The formatted string
+     * @return The formatted string
      */
     private String format(AttendanceRecord record) {
         String date = "-1", timeIn = "-1", timeOut = "-1";
@@ -120,7 +120,7 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
             writer.close();
             fw.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -163,7 +163,7 @@ public class AttendanceFileHandler implements IAttendanceDataHandler {
             reader.close();
             fr.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.writeError(Arrays.toString(e.getStackTrace()));
         }
 
         return employeeData;
